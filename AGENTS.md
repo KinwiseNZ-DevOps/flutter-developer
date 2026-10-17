@@ -51,7 +51,7 @@ Checks: frontmatter, name/folder match, description length and trigger, body und
 
 ## Known deliberate states (dated)
 
-- CUT: `<record deliberate temporary states here, each with a date and a reason>`
+- `<record deliberate temporary states here, each with a date and a reason>`
 
 ## Anti-drift close-out
 
