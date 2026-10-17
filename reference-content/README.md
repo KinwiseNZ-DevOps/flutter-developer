@@ -1,6 +1,6 @@
 # Reference content (setup-only)
 
-This folder turns messy raw material into clean, general-purpose reference content, and the skills are then built from that. It exists only while the repo is being built and is deleted before shipping.
+This folder turns messy raw material into clean, general-purpose reference content, and the skills are then built from that. It exists only while the repo is being built and is kept out of the Git index once the repo is shipped.
 
 ## The pipeline
 
@@ -38,4 +38,12 @@ originals   generalised    finished skills
 
 ## Before shipping
 
-Delete this whole folder. The validator fails once `skills/example-skill/` is gone and this folder still exists.
+Keep this folder on your computer. You need it again the next time this repo gains a skill, and `SETUP.md` says the same. It must not reach GitHub.
+
+The validator fails once `skills/example-skill/` is gone and this folder is still tracked by Git, or is not matched by `.gitignore`. Both conditions must hold:
+
+```bash
+git rm --cached --ignore-unmatch SETUP.md templates reference-content
+```
+
+Then confirm `/SETUP.md`, `/templates/` and `/reference-content/` are all listed in `.gitignore`. The folder staying on disk is expected and is not an error.
