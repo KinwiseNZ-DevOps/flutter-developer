@@ -4,13 +4,13 @@ This repo is a scaffold copied from the skills-repo template. Work top to bottom
 
 ## 1. Name and identity
 
-- [ ] Update `README.md`: title, one-liner, principle in the [!IMPORTANT] callout, intro paragraph (what the skills do and which agent(s) they serve)
+- [ ] Update `README.md`, keeping the template's section order and style (it matches every repo made from this template): ASCII banner, title and one-liner, badges (set OWNER, REPO and the skill count), principle in the [!IMPORTANT] callout, intro paragraph, "How they fit together" diagram (delete for a single-skill repo), usage phrases, status and footer links. Remove the `SETUP.md` line from the layout block when you delete `SETUP.md`
 - [ ] Update `LICENSE`: replace `<copyright holder>`
 - [ ] `AGENTS.md`: the general rules are identical in every repo by design; do not reword them. Adapt only two sections to the new repo: the **Repository map** (canonical sources, generated artefacts, editing rules, each with a reason) and **Known deliberate states** (delete the placeholder line). The verification command `python scripts/skills_tool.py check` is already correct because the template ships the same validator
 
 ## 2. Content
 
-- [ ] Design the skill set first: write the list of skills, their scope boundaries, and which skill owns each nearby topic. Scope discipline beats breadth (see the anti-patterns note: prefer curation over accumulation)
+- [ ] Design the skill set first: write the list of skills, their scope boundaries, and which skill owns each nearby topic. Scope discipline beats breadth: prefer curation over accumulation
 - [ ] Write the first real skill from `templates/skill-template/SKILL.md`
 - [ ] Write its description as a trigger contract: what it does, when to use it, keywords users type, and negative triggers for topics owned by sibling skills
 - [ ] If skills share constraints or a "voice", put them in one references file and link it from skills, never copy it
@@ -21,7 +21,7 @@ This repo is a scaffold copied from the skills-repo template. Work top to bottom
 
 ```bash
 python scripts/skills_tool.py catalogue   # refreshes the README table
-python scripts/skills_tool.py check       # must end: ok (N skills)
+python scripts/skills_tool.py check       # must end: ok (N skills), with no "ship checks skipped" note
 ```
 
 ## 4. Ship

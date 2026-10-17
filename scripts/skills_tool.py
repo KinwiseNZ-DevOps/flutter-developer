@@ -4,6 +4,9 @@
   python scripts/skills_tool.py validate     # exit 1 on any problem
   python scripts/skills_tool.py catalogue    # rewrite README catalogue block
   python scripts/skills_tool.py check        # validate + fail if catalogue is stale
+
+Dashes are always checked. Ship checks (placeholders, leftover scaffolding)
+run once skills/example-skill has been deleted.
 """
 import json
 import re
@@ -15,9 +18,14 @@ SKILLS = ROOT / "skills"
 README = ROOT / "README.md"
 EVALS = ROOT / "evals" / "cases.jsonl"
 BEGIN, END = "<!-- catalogue:begin -->", "<!-- catalogue:end -->"
+BADGE_RE = re.compile(r"(badge/agent_skills-)(\d+|<N>)(-)")
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 LINK_RE = re.compile(r"\]\((?!https?://|#|mailto:)([^)\s]+)\)")
 MAX_BODY_LINES, MAX_DESC, MAX_NAME, MIN_EVALS = 500, 1024, 64, 3
+BANNED_DASHES = (chr(0x2013), chr(0x2014))
+PLACEHOLDER_RE = re.compile(r"<([A-Za-z][^<>\n]*)>")
+HTML_TAGS = {"details", "summary", "div", "br", "p", "a", "img", "kbd", "sub", "sup"}
+PLACEHOLDER_FILES = ("README.md", "LICENSE", "AGENTS.md", "evals/cases.jsonl")
 
 
 def parse(path):
@@ -38,6 +46,8 @@ def parse(path):
 
 
 def skill_dirs():
+    if not SKILLS.is_dir():
+        sys.exit("ERROR: skills/ directory not found")
     return sorted(p for p in SKILLS.iterdir() if p.is_dir())
 
 
@@ -97,6 +107,43 @@ def validate():
     return errors
 
 
+def dashes():
+    errors = []
+    for p in sorted(ROOT.rglob("*")):
+        if not p.is_file() or ".git" in p.relative_to(ROOT).parts:
+            continue
+        try:
+            lines = p.read_text(encoding="utf-8").splitlines()
+        except UnicodeDecodeError:
+            continue
+        for i, line in enumerate(lines, 1):
+            if any(d in line for d in BANNED_DASHES):
+                errors.append(f"{p.relative_to(ROOT)}:{i}: em or en dash (use a hyphen)")
+    return errors
+
+
+def ship_checks():
+    if (SKILLS / "example-skill").exists():
+        return [], True
+    errors = []
+    for rel in PLACEHOLDER_FILES:
+        f = ROOT / rel
+        if not f.exists():
+            continue
+        for i, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
+            for m in PLACEHOLDER_RE.finditer(line):
+                inner = m.group(1)
+                first = inner.split()[0].lower().rstrip("/")
+                if first in HTML_TAGS:
+                    continue
+                if " " in inner or inner[0].isupper():
+                    errors.append(f"{rel}:{i}: leftover placeholder <{inner}>")
+    for leftover in ("SETUP.md", "templates"):
+        if (ROOT / leftover).exists():
+            errors.append(f"{leftover}: setup scaffolding still present (delete before shipping)")
+    return errors, False
+
+
 def build_catalogue():
     rows = ["| Skill | Purpose |", "|---|---|"]
     for d in skill_dirs():
@@ -113,10 +160,12 @@ def catalogue(write):
     new = f"{BEGIN}\n{build_catalogue()}\n{END}"
     if not pat.search(text):
         return ["README.md: catalogue markers missing"]
-    if pat.sub(lambda _: new, text) == text:
+    updated = pat.sub(lambda _: new, text)
+    updated = BADGE_RE.sub(lambda m: f"{m.group(1)}{len(skill_dirs())}{m.group(3)}", updated)
+    if updated == text:
         return []
     if write:
-        README.write_text(pat.sub(lambda _: new, text), encoding="utf-8")
+        README.write_text(updated, encoding="utf-8")
         return []
     return ["README.md: catalogue stale; run `python scripts/skills_tool.py catalogue`"]
 
@@ -124,8 +173,12 @@ def catalogue(write):
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "check"
     errors = []
+    skipped = False
     if cmd in ("validate", "check"):
         errors += validate()
+        errors += dashes()
+        ship_errors, skipped = ship_checks()
+        errors += ship_errors
     if cmd == "catalogue":
         errors += catalogue(write=True)
     if cmd == "check":
@@ -135,7 +188,8 @@ def main():
         return 2
     for e in errors:
         print("ERROR:", e)
-    print(f"{cmd}: {'FAILED' if errors else 'ok'} ({len(skill_dirs())} skills)")
+    note = " [ship checks skipped: example-skill present]" if skipped else ""
+    print(f"{cmd}: {'FAILED' if errors else 'ok'} ({len(skill_dirs())} skills){note}")
     return 1 if errors else 0
 
 

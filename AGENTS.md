@@ -15,7 +15,7 @@ Agent map and standing rules for this repository. Read this file as policy, not 
   - Add error handling, fallbacks, or caveats for scenarios that cannot happen (e.g. already covered by the validator). Validate at system boundaries only.
   - Create helpers or abstractions for one-time operations, or design for hypothetical requirements.
   - Refactor or "improve" anything beyond what the task asked.
-  - Do not add comments beyond what the code genuinely needs. Keep the codebase mostly clean: comment only where the logic is not self-evident, and keep those comments short. Reason: comments that restate the code rot into lies; the code is read far more often than it is written.
+  - Add comments beyond what the code genuinely needs. Keep the codebase mostly clean: comment only where the logic is not self-evident, and keep those comments short. Reason: comments that restate the code rot into lies; the code is read far more often than it is written.
   - Leave useless comments behind. When editing a file, delete comments in the lines you touch that are wrong, outdated, or say nothing the code does not already say. Reason: dead comments accumulate until readers stop trusting every comment, including the useful ones.
 - Prefer editing the source of a rule over editing a restatement of it. Reason: copies drift.
 
@@ -34,7 +34,7 @@ Before reporting any change done, run:
 python scripts/skills_tool.py check
 ```
 
-Checks: frontmatter, name/folder match, description length and trigger, body under 500 lines, relative links resolve, at least 3 eval cases per skill, catalogue not stale.
+Checks: frontmatter, name/folder match, description length and trigger, body under 500 lines, relative links resolve, at least 3 eval cases per skill, catalogue not stale, no em or en dashes in any file. Once `skills/example-skill/` is deleted it also fails on leftover `<placeholder>` text and on `SETUP.md` or `templates/` still being present.
 
 - The tool is necessary but not sufficient for content quality. For new or changed skill body text, also re-read the changed SKILL.md end to end. Reason: a validator checks structure; only reading checks that the instructions still make sense.
 
