@@ -21,6 +21,18 @@
 
 <Two or three sentences: what problems the skills solve, what they are grounded in (official docs or authoritative sources), and that they follow the open [Agent Skills](https://agentskills.io/specification) format. Name the agents they work in, e.g. Claude Code, Codex, Cursor, Copilot, OpenCode, or any SKILL.md-compatible agent.>
 
+Table of contents:
+
+- [Skills](#skills)
+- [How they fit together](#how-they-fit-together)
+- [Install](#install)
+- [Usage](#usage)
+- [Optional agent profiles](#optional-agent-profiles)
+- [Validate](#validate)
+- [Layout](#layout)
+- [Status and limits](#status-and-limits)
+
+<a id="skills"></a>
 ## 🧩 Skills
 
 <!-- catalogue:begin -->
@@ -29,6 +41,7 @@
 | [`example-skill`](skills/example-skill/SKILL.md) | Placeholder skill demonstrating this repository's skill format: the gate, steps, hard rule phrasing and reference layout. |
 <!-- catalogue:end -->
 
+<a id="how-they-fit-together"></a>
 ## 🗺️ How they fit together
 
 ```mermaid
@@ -41,6 +54,7 @@ flowchart TD
 
 <One sentence on the order or priority in which the skills usually apply. Delete this section and the diagram for a repo with a single skill.>
 
+<a id="install"></a>
 ## 📦 Install
 
 > [!TIP]
@@ -55,6 +69,7 @@ Copy or symlink the `skills/` subfolders you want into your agent's skills direc
 
 To install supplied Claude Code, GitHub Copilot or Codex profiles into a project, run `python scripts/install_agents.py --host claude-code --target PATH`. The command adds profiles to their native agent folders and leaves unrelated files alone. Other hosts receive the skills only. If no profile files are supplied for that host, it makes no changes.
 
+<a id="usage"></a>
 ## 🚀 Usage
 
 > [!TIP]
@@ -77,10 +92,12 @@ To install supplied Claude Code, GitHub Copilot or Codex profiles into a project
 > [!NOTE]
 > Skills also trigger on their own when your request matches. In Claude Code you can also invoke one explicitly with `/<skill-name>`, but the plain phrases above are shorter and work across every agent.
 
+<a id="optional-agent-profiles"></a>
 ## Optional agent profiles
 
 This section applies only when agent definitions were supplied during setup. Skill-specific profiles use `skill-slug-role` names, while repo-wide shared profiles use `shared-role` names. Profiles live under `resources/agents/<host>/`. Other hosts receive the skills only. If no agents were supplied, remove this section and let the skills run directly.
 
+<a id="validate"></a>
 ## ✅ Validate
 
 ```bash
@@ -89,6 +106,7 @@ python scripts/skills_tool.py check
 
 Checks: frontmatter, name/folder match, description length and trigger, body under 500 lines, relative links resolve, agent profile name prefixes, at least 3 eval cases per skill, catalogue freshness, and no em or en dashes. After the starter skill is deleted it also rejects leftover placeholders and setup scaffolding. Stdlib only, no dependencies.
 
+<a id="layout"></a>
 ## 🗂️ Layout
 
 <details>
@@ -108,6 +126,7 @@ reference-content/          source material the skills are built from; delete wh
 
 </details>
 
+<a id="status-and-limits"></a>
 ## 📌 Status and limits
 
 > [!NOTE]
