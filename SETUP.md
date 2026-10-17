@@ -19,6 +19,7 @@ This repo is a scaffold copied from the skills-repo template. Work top to bottom
 - [ ] If skills share constraints or a "voice", put them in one references file and link it from skills, never copy it
 - [ ] Add 3+ behavioural cases per skill to `evals/cases.jsonl` (real queries, expected behaviours, at least one refusal case)
 - [ ] Replace the starter cases and delete `skills/example-skill/`
+- [ ] Inspect `resources/agents/` after the skills and router names are final. If no definitions were supplied, install none and leave agent folders and dispatch instructions out. For shared roles, keep the `shared-` prefix and use the same definitions across repos. For skill-specific roles, prefix the file name, host-visible name, and ID with the owning skill slug and role, such as `django-api-architect-debugger`. Supply native profile files under Claude Code, GitHub Copilot or Codex, wire the entry skill to select them by task, and include the optional dispatch section from `templates/skill-template/SKILL.md` in applicable specialist skills. Other hosts receive the skills only. Keep the README agent section only for supplied profiles. Preserve `resources/agents/` in the shipped repo so the installer can copy profiles into a project.
 
 ## 3. Register
 

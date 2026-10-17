@@ -53,6 +53,8 @@ Copy or symlink the `skills/` subfolders you want into your agent's skills direc
 | Claude Code | `~/.claude/skills/` or a project's `.claude/skills/` |
 | Codex · Cursor · Copilot · OpenCode · Windsurf | the agent's own SKILL.md discovery path |
 
+To install supplied Claude Code, GitHub Copilot or Codex profiles into a project, run `python scripts/install_agents.py --host claude-code --target PATH`. The command adds profiles to their native agent folders and leaves unrelated files alone. Other hosts receive the skills only. If no profile files are supplied for that host, it makes no changes.
+
 ## 🚀 Usage
 
 > [!TIP]
@@ -75,13 +77,17 @@ Copy or symlink the `skills/` subfolders you want into your agent's skills direc
 > [!NOTE]
 > Skills also trigger on their own when your request matches. In Claude Code you can also invoke one explicitly with `/<skill-name>`, but the plain phrases above are shorter and work across every agent.
 
+## Optional agent profiles
+
+This section applies only when agent definitions were supplied during setup. Skill-specific profiles use `skill-slug-role` names, while repo-wide shared profiles use `shared-role` names. Profiles live under `resources/agents/<host>/`. Other hosts receive the skills only. If no agents were supplied, remove this section and let the skills run directly.
+
 ## ✅ Validate
 
 ```bash
 python scripts/skills_tool.py check
 ```
 
-Checks: frontmatter, name/folder match, description length and trigger, body under 500 lines, relative links resolve, at least 3 eval cases per skill, catalogue freshness, and no em or en dashes. After the starter skill is deleted it also rejects leftover placeholders and setup scaffolding. Stdlib only, no dependencies.
+Checks: frontmatter, name/folder match, description length and trigger, body under 500 lines, relative links resolve, agent profile name prefixes, at least 3 eval cases per skill, catalogue freshness, and no em or en dashes. After the starter skill is deleted it also rejects leftover placeholders and setup scaffolding. Stdlib only, no dependencies.
 
 ## 🗂️ Layout
 
@@ -91,6 +97,8 @@ Checks: frontmatter, name/folder match, description length and trigger, body und
 ```
 skills/<name>/SKILL.md      one folder per skill (+ references/ where needed)
 evals/cases.jsonl           3+ behavioural cases per skill
+resources/agents/             optional host profiles copied by installer
+scripts/install_agents.py     copy optional agent profiles into a project
 scripts/skills_tool.py      validate, regenerate catalogue (stdlib only)
 .github/workflows/          CI runs `skills_tool.py check` (free on public repos)
 AGENTS.md                   agent-facing rules for this repo

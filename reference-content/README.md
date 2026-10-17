@@ -16,6 +16,7 @@ originals   generalised    finished skills
 3. **Convert each raw item into a general-purpose file in `sources/`.** Follow the conversion rules below. Record every conversion in the log in `BRIEF.md`.
 4. **Fill in `BRIEF.md`.** Purpose, audience, principle, scope, planned skills, constraints.
 5. **Build the skills** from `BRIEF.md` and `sources/` only. Never from `raw/`.
+6. **Check optional agent profiles** at `resources/agents/`. If no agent files were supplied, do not add agent dispatch rules. If profiles are supplied, follow its README to separate shared roles from skill-specific roles and namespace the latter with the owning skill slug. Keep the native profiles in `resources/agents/` so the shipped installer can add them to user projects.
 
 ## Conversion rules
 

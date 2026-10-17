@@ -22,6 +22,10 @@ One-paragraph stance: what is frozen, what is flexible.
 2. **Fix** (least invasive option first; minimal code example)
 3. **Verify** (what to measure, compared like for like)
 
+## Agent dispatch (include only when agent profiles are installed)
+
+Check the profiles available to the current host and choose a suitable skill-specific or shared agent for this request. Give it the user's request and this skill's instructions, then review its work against the skill's hard rules. If no suitable agent is available or the host cannot delegate, follow this skill directly.
+
 ## Hard rules
 
 - Rule. Mechanism: symptom, cause, fix.
