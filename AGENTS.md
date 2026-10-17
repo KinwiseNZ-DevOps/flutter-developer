@@ -12,7 +12,7 @@ Agent map and standing rules for this repository. Read this file as policy, not 
 
 - Make the smallest correct change that satisfies the task. Reason: every extra line is extra review burden and extra risk. Concretely, do not:
   - Add docstrings, comments, or type annotations to content you did not change.
-  - Add error handling, fallbacks, or caveats for scenarios that cannot happen (e.g. already covered by the validator).
+  - Add error handling, fallbacks, or caveats for scenarios that cannot happen (e.g. already covered by the validator). Validate at system boundaries only.
   - Create helpers or abstractions for one-time operations, or design for hypothetical requirements.
   - Refactor or "improve" anything beyond what the task asked.
   - Do not add comments beyond what the code genuinely needs. Keep the codebase mostly clean: comment only where the logic is not self-evident, and keep those comments short. Reason: comments that restate the code rot into lies; the code is read far more often than it is written.

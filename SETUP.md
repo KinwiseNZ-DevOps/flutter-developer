@@ -6,7 +6,7 @@ This repo is a scaffold copied from the skills-repo template. Work top to bottom
 
 - [ ] Update `README.md`: title, one-liner, principle in the [!IMPORTANT] callout, intro paragraph (what the skills do and which agent(s) they serve)
 - [ ] Update `LICENSE`: replace `<copyright holder>`
-- [ ] Update this repo's `AGENTS.md`: fill the repository-map section (canonical sources, generated artefacts, editing rules, each with a reason). The verification command is already correct (`python scripts/skills_tool.py check`)
+- [ ] `AGENTS.md`: the general rules are identical in every repo by design; do not reword them. Adapt only two sections to the new repo: the **Repository map** (canonical sources, generated artefacts, editing rules, each with a reason) and **Known deliberate states** (delete the placeholder line). The verification command `python scripts/skills_tool.py check` is already correct because the template ships the same validator
 
 ## 2. Content
 
