@@ -21,7 +21,7 @@
 
 [![Validate skills](https://github.com/KinwiseNZ-DevOps/flutter-developer/actions/workflows/validate.yml/badge.svg)](https://github.com/KinwiseNZ-DevOps/flutter-developer/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Agent skills](https://img.shields.io/badge/agent_skills-6-8A2BE2)](https://agentskills.io)
+[![Agent skills](https://img.shields.io/badge/agent_skills-8-8A2BE2)](https://agentskills.io)
 [![Format](https://img.shields.io/badge/format-SKILL.md-orange)](https://agentskills.io/specification)
 [![Tooling](https://img.shields.io/badge/tooling-stdlib_only-success)](scripts/skills_tool.py)
 
@@ -42,7 +42,7 @@ Table of contents:
 > [!IMPORTANT]
 > **Principle: follow the official Dart and Flutter guidance, verify against the real code before changing it, and make the smallest correct change.**
 
-These skills turn the Dart team's Effective Dart guide, the Flutter team's app architecture recommendations and the GNU Make manual into short, reasoned rules an agent can apply. Each rule carries its reason, so it still works when a situation is not named. They follow the open [Agent Skills](https://agentskills.io/specification) format and work in Claude Code, Codex, Cursor, Copilot, OpenCode or any SKILL.md-compatible agent.
+These skills turn the Dart team's Effective Dart guide, the Flutter team's architecture and theming guidance, the Django REST Framework and Simple JWT documentation, and the GNU Make manual into short, reasoned rules an agent can apply. Each rule carries its reason, so it still works when a situation is not named. They follow the open [Agent Skills](https://agentskills.io/specification) format and work in Claude Code, Codex, Cursor, Copilot, OpenCode or any SKILL.md-compatible agent.
 
 ---
 
@@ -54,7 +54,9 @@ These skills turn the Dart team's Effective Dart guide, the Flutter team's app a
 |---|---|
 | [`dart-code-standards`](skills/dart-code-standards/SKILL.md) | Applies the official Effective Dart rules to written Dart code: identifier naming, import ordering, formatting, doc comments, null safety usage, collections, async, error handling, types, parameters, equality and public API design. |
 | [`flutter-architecture`](skills/flutter-architecture/SKILL.md) | Applies the Flutter team's app architecture recommendations: UI and data layers, MVVM, repositories, unidirectional data flow, immutable models, dependency injection, navigation, naming and testing with fakes. |
-| [`flutter-developer`](skills/flutter-developer/SKILL.md) | Router and shared guardrails for Dart and Flutter development work: picks the right specialist skill and enforces verify-before-claiming, smallest-change and honest close-out rules. |
+| [`flutter-design-system`](skills/flutter-design-system/SKILL.md) | Applies a design system in Flutter through the theme layer: ThemeData, ColorScheme, TextTheme, ThemeExtension design tokens, light and dark themes, shared themed widgets and accessibility checks. |
+| [`flutter-developer`](skills/flutter-developer/SKILL.md) | Router and shared guardrails for Dart and Flutter development work, including Django API integration and design systems: picks the right specialist skill and enforces verify-before-claiming, smallest-change and honest close-out rules. |
+| [`flutter-django-integration`](skills/flutter-django-integration/SKILL.md) | Guides the Flutter side of integrating with a Django REST Framework backend: service and repository layering, OpenAPI contract and client generation, JSON model mapping, JWT authentication and token storage, error and validation mapping, pagination, environments and web CORS. |
 | [`flutter-task-research`](skills/flutter-task-research/SKILL.md) | Runs a research-only investigation before a task is planned: reads the codebase and authoritative sources, records verified findings in one research note, weighs alternatives and converges on a single recommended approach without editing code. |
 | [`flutter-tech-debt-plan`](skills/flutter-tech-debt-plan/SKILL.md) | Produces a scored technical debt remediation plan for Flutter and Dart code, tests and documentation, with a summary table and a detailed plan per item, without changing code. |
 | [`make-automation`](skills/make-automation/SKILL.md) | Writes and reviews GNU Make Makefiles that wrap repeatable project commands such as code generation, analysis, tests and builds, covering structure, variables, phony targets, recipes, includes and portability. |
@@ -72,6 +74,8 @@ flowchart TD
     R --> B["🏗️ flutter-architecture<br/>layers, MVVM, repositories, testing"]
     R --> C["🔍 flutter-task-research<br/>research-only investigation"]
     R --> D["📋 flutter-tech-debt-plan<br/>scored remediation plans"]
+    R --> F["🔌 flutter-django-integration<br/>Django REST API client, auth, errors, pagination"]
+    R --> G["🎨 flutter-design-system<br/>themes, design tokens, accessibility"]
     R --> E["🛠️ make-automation<br/>Makefiles for build and test commands"]
 ```
 
@@ -91,6 +95,8 @@ Most work starts at the router. Research comes before a change that needs unders
 /plugin marketplace add KinwiseNZ-DevOps/flutter-developer
 /plugin install flutter-developer@flutter-developer-marketplace
 ```
+
+For best results also install the optional companions `flutter-optimiser` (performance) and `django-api-architect` (Django server code). The integration skill names the exact companion skill to use for each concern.
 
 Or copy or symlink the `skills/` subfolders you want into your agent's skills directory:
 
@@ -123,6 +129,8 @@ Or copy or symlink the `skills/` subfolders you want into your agent's skills di
 | `Review my Dart style` | Findings against Effective Dart | *dart-code-standards* |
 | `Research this before we change it` | One research note, one recommendation | *flutter-task-research* |
 | `Audit tech debt in lib` | A scored remediation plan | *flutter-tech-debt-plan* |
+| `Connect this screen to the Django API` | Layered client, auth, error and pagination handling | *flutter-django-integration* |
+| `Apply our design tokens` | Theme and ThemeExtension wiring, accessibility checks | *flutter-design-system* |
 | `Add make targets for test and analyse` | A tidy Makefile | *make-automation* |
 
 > [!NOTE]
@@ -167,7 +175,8 @@ AGENTS.md                   agent-facing rules for this repo
 
 > [!NOTE]
 > - Architecture advice keeps the Flutter team's priority labels (Strongly recommend, Recommend, Conditional) and is meant to be adapted, not applied blindly.
-> - Performance profiling and optimisation are out of scope here.
+> - The Django integration skill covers the Flutter client only; server code belongs to the backend. Advice not stated by an official page is marked as inference in the skill references.
+> - Performance profiling and optimisation are out of scope here. The skills hand off to the `flutter-optimiser` plugin (flutter-performance-specialist) and, for server code, to the `django-api-architect` plugin, when those are installed. Without them the skills still work and say the hand-off was skipped.
 > - No agent profiles are supplied yet; the skills run directly in any compatible agent.
 > - Licensed under MIT (see [LICENSE](LICENSE)).
 

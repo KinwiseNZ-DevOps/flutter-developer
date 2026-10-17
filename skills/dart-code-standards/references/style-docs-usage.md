@@ -15,9 +15,9 @@ Condensed from Effective Dart (https://dart.dev/effective-dart). Trust level: of
 |---|---|
 | Types and extensions use `UpperCamelCase` | One casing per kind of name lets a reader tell a type from a value at a glance |
 | Packages, directories, source files and import prefixes use `lowercase_with_underscores` | File systems differ in case sensitivity, so lower case avoids clashes (inference) |
-| Everything else, including constants, uses `lowerCamelCase` | Constants are not special in Dart; one rule for values is simpler |
+| Everything else, including constants and enum values, uses `lowerCamelCase`. `SCREAMING_CAPS` is acceptable only to match existing code | Constants are not special in Dart; one rule for values is simpler |
 | Treat acronyms longer than two letters as words (`HttpClient`, not `HTTPClient`) | Keeps word boundaries readable when acronyms sit next to each other |
-| Use `_` for unused callback parameters | Signals the value is deliberately ignored |
+| Use `_` for unused parameters of anonymous, local callbacks (non-binding wildcards need language version 3.7 or later). Top-level functions and methods keep descriptive parameter names | Signals the value is deliberately ignored |
 | No leading underscore on non-private names, no prefix letters, no explicit `library` names | The underscore means private in Dart; Hungarian-style prefixes add noise the type system already covers |
 
 ## Style: ordering and formatting
@@ -72,7 +72,7 @@ Condensed from Effective Dart (https://dart.dev/effective-dart). Trust level: of
 - Avoid storing what you can calculate. Reason: stored copies go stale and must be kept in sync.
 - Do not wrap a field in a trivial getter and setter. Use a `final` field for a read-only property. Use `=>` for simple members.
 - Use `this.` only to avoid shadowing or to redirect to a named constructor.
-- Use initialising formals (`this.x`) and `;` for empty constructor bodies. Do not use `new`. Do not write `const` where it is already implied. Do not use `late` where an initialiser list will do.
+- Use initialising formals (`this.x`) and prefer concise constructor syntax. Use `;` for empty constructor bodies. Do not use `new`. Do not write `const` where it is already implied. Do not use `late` where an initialiser list will do.
 
 ## Usage: error handling
 
@@ -87,5 +87,7 @@ Condensed from Effective Dart (https://dart.dev/effective-dart). Trust level: of
 - Avoid using `Completer` directly; it is rarely needed and easy to leave incomplete.
 - Prefer higher-order methods when transforming a stream.
 - When disambiguating a `FutureOr<T>` whose `T` could be `Object`, test for `Future<T>`, not for `T`.
+
+Verified against the live guide on 2026-10-18.
 
 Official source: https://dart.dev/effective-dart/style, /documentation, /usage

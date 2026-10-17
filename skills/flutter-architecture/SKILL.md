@@ -31,11 +31,12 @@ Reason: imposing a heavier structure than the app needs adds files and indirecti
 2. **Fix.** Least invasive first:
    1. Move logic out of the widget into a ViewModel method; leave only the allowed view logic (show or hide from a flag, animations, layout from device information, simple routing).
    2. Put data access behind a repository, preferably an abstract class so tests and environments can swap implementations.
-   3. Make data models immutable and send updates one way: data layer to UI, with UI events passed back to the data layer.
-   4. Inject dependencies instead of reaching for globals.
+   3. Wrap each ViewModel action in a `Command` so loading, error and completed state is in one place, and return `Result` from services and repositories so failure must be handled.
+   4. Make data models immutable and send updates one way: data layer to UI, with UI events passed back to the data layer.
+   5. Inject dependencies instead of reaching for globals.
 3. **Verify.** Unit test each service, repository and ViewModel method, using fakes. Widget test views, with routing and dependency injection as priority areas. Confirm behaviour is unchanged.
 
-The full table of practices, priorities and reasons is in [recommendations.md](references/recommendations.md).
+The full table of practices, priorities and reasons is in [recommendations.md](references/recommendations.md). Services, repositories, API versus domain models, Result, Command and injection are detailed in [data-layer-patterns.md](references/data-layer-patterns.md).
 
 ## Hard rules
 
@@ -46,12 +47,16 @@ The full table of practices, priorities and reasons is in [recommendations.md](r
 - Avoid globally accessible objects; inject. Mechanism: globals hide dependencies and cannot be replaced in tests.
 - Name classes for their role (`HomeScreen`, `HomeViewModel`, `UserRepository`, `ClientApiService`) and avoid names that clash with SDK concepts. Mechanism: the name tells a reader which layer they are in.
 - Follow the project's existing packages for state management, injection and navigation. Mechanism: the recommendations name `provider`, `ChangeNotifier` and `go_router` as examples; the principle matters more than the package.
+- Services are stateless wrappers around one external API, and repositories are the only place data is changed. Mechanism: one writer per kind of data means one place to look when it is wrong.
+- Return `Result` rather than throwing across layers. Mechanism: Dart exceptions are unchecked, so a forgotten catch becomes a crash.
+- Subscribe to the smallest slice of state a widget needs, so a change rebuilds only what shows it. Mechanism: a broad subscription rebuilds the whole screen for one changed field; for measured rebuild problems hand off to the performance companion (flutter-perf-build-and-rebuild).
 - Generated models (`freezed`, `built_value`) trade build time for less hand-written code; say so when proposing them.
 
 ## References
 
 - [recommendations.md](references/recommendations.md): every practice with its priority and reason.
+- [data-layer-patterns.md](references/data-layer-patterns.md): services, repositories, Result, Command, dependency injection.
 
 ## Next
 
-For Dart-level style see [dart-code-standards](../dart-code-standards/SKILL.md). To investigate an unfamiliar codebase first see [flutter-task-research](../flutter-task-research/SKILL.md). Back to [flutter-developer](../flutter-developer/SKILL.md).
+For calling a Django backend see [flutter-django-integration](../flutter-django-integration/SKILL.md). For theming see [flutter-design-system](../flutter-design-system/SKILL.md). For Dart-level style see [dart-code-standards](../dart-code-standards/SKILL.md). To investigate an unfamiliar codebase first see [flutter-task-research](../flutter-task-research/SKILL.md). Back to [flutter-developer](../flutter-developer/SKILL.md).

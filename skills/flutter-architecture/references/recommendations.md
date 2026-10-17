@@ -1,6 +1,6 @@
 # Flutter app architecture recommendations
 
-Condensed from the Flutter team's architecture recommendations (https://docs.flutter.dev/app-architecture/recommendations). Trust level: official. These are recommendations to adapt, not fixed rules. Priority labels come from the source: Strongly recommend, Recommend, Conditional. "(inference)" marks the author's reading.
+Verified against the live page on 2026-10-18. Condensed from the Flutter team's architecture recommendations (https://docs.flutter.dev/app-architecture/recommendations). Trust level: official. These are recommendations to adapt, not fixed rules. Priority labels come from the source: Strongly recommend, Recommend, Conditional. "(inference)" marks the author's reading.
 
 ## Separation of concerns
 
@@ -27,7 +27,7 @@ Logic a view may legitimately contain:
 | Practice | Priority | Mechanism |
 |---|---|---|
 | Unidirectional data flow | Strongly recommend | State flows from data layer to UI; UI events go back to the data layer to be processed. Updates have one path, so bugs have one place to hide |
-| `Command` objects for user-initiated events | Recommend | Standardise how the UI sends events and expose running, error and completed state; this prevents rendering errors from async work |
+| `Command` objects for user-initiated events | Recommend | Prevent rendering errors and standardise how the UI sends events to the data layer. A Command exposes running, error and completed state; see [data-layer-patterns.md](data-layer-patterns.md) |
 | Immutable data models | Strongly recommend | Changes require a new instance, so accidental edits in the UI layer cannot happen |
 | `freezed` or `built_value` to generate models | Recommend | Generate JSON serialisation, deep equality and copy methods. Cost: significant build time in apps with many models |
 | Separate API models and domain models | Conditional | For large apps. Adds verbosity but keeps wire-format quirks out of ViewModels and use cases |

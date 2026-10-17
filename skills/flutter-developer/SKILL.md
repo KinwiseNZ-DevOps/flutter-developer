@@ -1,8 +1,8 @@
 ---
 name: flutter-developer
 description: >
-  Router and shared guardrails for Dart and Flutter development work: picks the
-  right specialist skill and enforces verify-before-claiming, smallest-change
+  Router and shared guardrails for Dart and Flutter development work, including
+  Django API integration and design systems: picks the right specialist skill and enforces verify-before-claiming, smallest-change
   and honest close-out rules. Use when a task touches Dart or Flutter code, when
   starting any Flutter change, or when it is unclear which skill applies. Do not
   use for backend work, or for performance profiling and optimisation.
@@ -31,6 +31,8 @@ Reason: routing a trivial fix through a full workflow wastes effort, and routing
 | Layers, ViewModels, repositories, data flow, dependency injection, navigation, test strategy | [flutter-architecture](../flutter-architecture/SKILL.md) |
 | Understanding a codebase or comparing approaches before any change | [flutter-task-research](../flutter-task-research/SKILL.md) |
 | Finding and scoring technical debt, producing a remediation plan | [flutter-tech-debt-plan](../flutter-tech-debt-plan/SKILL.md) |
+| Calling a Django REST API: models, auth, errors, pagination, CORS | [flutter-django-integration](../flutter-django-integration/SKILL.md) |
+| Theming, design tokens, dark mode, contrast, tap targets, text scaling | [flutter-design-system](../flutter-design-system/SKILL.md) |
 | Makefile targets that wrap build, analyse, generate or test commands | [make-automation](../make-automation/SKILL.md) |
 
 ## Steps
@@ -47,6 +49,15 @@ Reason: routing a trivial fix through a full workflow wastes effort, and routing
 - Do not add comments, abstractions, error handling or refactors the task did not ask for. Mechanism: each extra line is extra review burden and extra risk.
 - Do not claim completion beyond the evidence. State which checks ran and their results, which were skipped and why, and what risk remains. Mechanism: an unqualified "done" hides the gap between written and verified.
 - Keep project-specific facts out of shared guidance; read the project's architecture at runtime instead.
+
+## Companion plugins (use when installed)
+
+| Work | Hand off to |
+|---|---|
+| Profiling, rebuild cost, list scrolling, isolates, image and effect cost, "the app feels slow" | flutter-performance-specialist (start with flutter-perf-audit) |
+| Server-side API work that a Flutter change depends on | django-api-architect and its specialist skills |
+
+This repo owns correctness, structure and integration; the companions own measurement and server code. Do not optimise without a profile, and do not edit server code from here. If a companion is not installed, say the hand-off was skipped.
 
 ## References
 
