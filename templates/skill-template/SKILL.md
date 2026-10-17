@@ -24,7 +24,7 @@ One-paragraph stance: what is frozen, what is flexible.
 
 ## Agent dispatch (include only when agent profiles are installed)
 
-Check the profiles available to the current host and choose a suitable skill-specific or shared agent for this request. Give it the user's request and this skill's instructions, then review its work against the skill's hard rules. If no suitable agent is available or the host cannot delegate, follow this skill directly.
+Use the repo's main `<router-skill>-workflow` agent when available. It selects a named mode for this request and follows this skill alongside the router's workflow. Use the optional helper only for its stated focused task. If no profile is available or the host cannot delegate, follow this skill directly.
 
 ## Hard rules
 

@@ -1,13 +1,16 @@
 # Optional agent profiles
 
-Agent profiles are optional. Store host-native definitions in a folder named for the host, then under `shared/` or `skill-specific/`. The installer looks for `*.agent.md` files in these folders. If none are supplied for a host, it reports that there is nothing to install and creates no agent folders in the target project.
+Agent profiles are optional. Each supported host can receive one main workflow agent and one focused helper at most. If a repo supplies no agent definitions, the installer creates no agent folder in the target project.
+
+Store host-native profiles under the host folder. The main profile belongs in `skill-specific/` and uses the router skill slug plus `-workflow`. An optional helper belongs in `shared/` when it is the same across repos, or `skill-specific/` when its work is repo-specific.
 
 ```text
-resources/agents/<host>/shared/shared-<role>.<host-extension>.md
-resources/agents/<host>/skill-specific/<skill-slug>-<role>.<host-extension>.md
+resources/agents/<host>/skill-specific/<router-skill>-workflow.<host-extension>.md
+resources/agents/<host>/shared/shared-<helper-role>.<host-extension>.md
+resources/agents/<host>/skill-specific/<router-skill>-<helper-role>.<host-extension>.md
 ```
 
-Use `shared/` for reusable agents that should be present in every skills repo, such as a code style reviewer. Keep their names in the `shared-` namespace and maintain the same definition across repos. Use `skill-specific/` for agents that carry one skill's workflow. Prefix the file name and every host-visible name or ID with the owning skill slug and role, such as `django-api-architect-debugger`.
+Combine normal work modes such as planning, implementation, testing, and review as named sections in the main agent. Use the helper only for a distinct task that benefits from separate focus or an independent review. Do not create one agent per skill.
 
 Supported host destinations are:
 
@@ -17,6 +20,6 @@ Supported host destinations are:
 | `github-copilot` | `.github/agents/` |
 | `codex` | `agents/codex/` |
 
-Only Claude Code, GitHub Copilot and Codex profiles are installed. Other compatible hosts receive the skills only. The installer copies without replacing existing files. If a target already has a different file with the same name, it reports the conflict and makes no changes.
+Profiles use host-native formats. Other compatible hosts receive skills only. The installer copies without replacing existing files and requires exactly one main profile ending in `-workflow`, with no more than one helper. If a target already has a different file with the same name, it reports the conflict and makes no changes.
 
-Codex role briefs are prompt files rather than host-discovered agent profiles. When Codex briefs are installed, the installer adds a marked routing block to the target's `AGENTS.md`, preserving its other contents. Codex can read the matching brief and delegate with native subagents when available, or follow the brief directly.
+Codex files are prompt briefs rather than auto-discovered subagents. When supplied, the installer adds a marked routing block to the target's `AGENTS.md`; Codex can delegate using native subagents when available or follow the brief directly.

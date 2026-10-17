@@ -10,7 +10,7 @@ This repo is a scaffold copied from the skills-repo template. Work top to bottom
 
 ## 2. Content
 
-- [ ] Keep `/SETUP.md`, `/templates/`, and `/reference-content/` ignored as configured in `.gitignore`. Keep these files locally, but remove them from the Git index before the first commit with `git rm --cached --ignore-unmatch SETUP.md templates reference-content`. The validator fails if they are tracked or not ignored.
+- [ ] In the new repo, add `/templates/` to `.gitignore`. The template repo keeps this folder tracked because it contains the starter skill. Keep `/SETUP.md` and `/reference-content/` ignored as configured. Keep all setup files locally, but remove them from the Git index before the first public commit with `git rm --cached --ignore-unmatch SETUP.md templates reference-content`. The validator fails if they are tracked or not ignored.
 - [ ] Build the reference content first (pipeline in `reference-content/README.md`): drop originals into `raw/`, list project-specific names in `strip-terms.txt`, convert each item into a general-purpose file in `sources/`, and fill in `BRIEF.md`
 - [ ] Build the skills from `BRIEF.md` and `sources/` only, never from `raw/`
 - [ ] Design the skill set first: write the list of skills, their scope boundaries, and which skill owns each nearby topic. Scope discipline beats breadth: prefer curation over accumulation

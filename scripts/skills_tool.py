@@ -5,11 +5,11 @@
   python scripts/skills_tool.py catalogue    # rewrite README catalogue block
   python scripts/skills_tool.py check        # validate + fail if catalogue is stale
 
-Dashes are always checked (except in reference-content/, which holds raw source material). Ship checks (placeholders, leftover scaffolding)
-run once skills/example-skill has been deleted.
+Dashes are always checked (except in reference-content/, which holds raw source material). Ship checks for placeholders and setup-only paths in the Git index run once skills/example-skill has been deleted.
 """
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -117,15 +117,25 @@ def validate_agent_sources():
     if not AGENT_SOURCES.is_dir():
         return errors
     for host in sorted(path for path in AGENT_SOURCES.iterdir() if path.is_dir()):
+        profiles = []
+        workflow_profiles = []
         for scope, matches in scopes.items():
             folder = host / scope
             if not folder.is_dir():
                 continue
             for path in sorted(folder.glob("*.md")):
+                profiles.append(path)
                 stem = path.name[:-len(".agent.md")] if path.name.endswith(".agent.md") else path.stem
+                if scope == "skill-specific":
+                    if stem.endswith("-workflow"):
+                        workflow_profiles.append(path)
                 if not matches(stem):
                     expected = "shared-<role>" if scope == "shared" else "<owning-skill-name>-<role>"
                     errors.append(f"{path.relative_to(ROOT)}: name must use {expected}")
+        if len(profiles) > 2:
+            errors.append(f"{host.name}: {len(profiles)} agent profiles > 2; combine workflows into one main agent and one helper")
+        if profiles and len(workflow_profiles) != 1:
+            errors.append(f"{host.name}: supply exactly one skill-specific main profile ending in -workflow")
     return errors
 
 
@@ -188,9 +198,30 @@ def ship_checks():
                     continue
                 if " " in inner or inner[0].isupper():
                     errors.append(f"{rel}:{i}: leftover placeholder <{inner}>")
-    for leftover in ("SETUP.md", "templates", "reference-content"):
-        if (ROOT / leftover).exists():
-            errors.append(f"{leftover}: setup scaffolding still present (delete before shipping)")
+    private_paths = ("SETUP.md", "templates", "reference-content")
+    tracked = subprocess.run(
+        ["git", "ls-files", "--cached", "--", *private_paths],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if tracked.returncode:
+        errors.append("could not check Git index for private setup files")
+    else:
+        errors.extend(
+            f"{path}: private setup file is tracked; keep it local and ignored"
+            for path in tracked.stdout.splitlines()
+        )
+    ignored = subprocess.run(
+        ["git", "check-ignore", "--quiet", "--no-index", "--", *private_paths],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if ignored.returncode:
+        errors.append("setup-only paths must be ignored in .gitignore")
     return errors, False
 
 

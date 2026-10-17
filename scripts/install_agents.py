@@ -44,6 +44,17 @@ def main():
     if not files:
         print(f"No agent profiles supplied for {args.host}; nothing to install.")
         return 0
+    if len(files) > 2:
+        print(f"ERROR: {args.host} has {len(files)} profiles; supply one main workflow agent and at most one helper.")
+        return 2
+    workflows = [
+        path for path in files
+        if path.parent.name == "skill-specific"
+        and (path.name[:-len(".agent.md")] if path.name.endswith(".agent.md") else path.stem).endswith("-workflow")
+    ]
+    if len(workflows) != 1:
+        print(f"ERROR: {args.host} needs exactly one skill-specific main workflow agent ending in -workflow.")
+        return 2
 
     skill_names = [path.name for path in (ROOT / "skills").iterdir() if path.is_dir()]
     invalid_names = []
