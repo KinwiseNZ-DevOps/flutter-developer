@@ -10,6 +10,7 @@ This repo is a scaffold copied from the skills-repo template. Work top to bottom
 
 ## 2. Content
 
+- [ ] Before adding any source material, add `reference-content/` to `.gitignore` (and remove the template's `!reference-content/raw/.gitkeep` line). Reason: sources, the brief and `strip-terms.txt` hold private project material and the very names you are stripping; once pushed to a public repo they cannot be recalled
 - [ ] Build the reference content first (pipeline in `reference-content/README.md`): drop originals into `raw/`, list project-specific names in `strip-terms.txt`, convert each item into a general-purpose file in `sources/`, and fill in `BRIEF.md`
 - [ ] Build the skills from `BRIEF.md` and `sources/` only, never from `raw/`
 - [ ] Design the skill set first: write the list of skills, their scope boundaries, and which skill owns each nearby topic. Scope discipline beats breadth: prefer curation over accumulation
