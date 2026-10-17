@@ -16,11 +16,6 @@
 
 </div>
 
-> [!IMPORTANT]
-> **Principle: <the single sentence every skill in this repo must obey.>**
-
-<Two or three sentences: what problems the skills solve, what they are grounded in (official docs or authoritative sources), and that they follow the open [Agent Skills](https://agentskills.io/specification) format. Name the agents they work in, e.g. Claude Code, Codex, Cursor, Copilot, OpenCode, or any SKILL.md-compatible agent.>
-
 Table of contents:
 
 - [Skills](#skills)
@@ -31,6 +26,13 @@ Table of contents:
 - [Validate](#validate)
 - [Layout](#layout)
 - [Status and limits](#status-and-limits)
+
+---
+
+> [!IMPORTANT]
+> **Principle: <the single sentence every skill in this repo must obey.>**
+
+<Two or three sentences: what problems the skills solve, what they are grounded in (official docs or authoritative sources), and that they follow the open [Agent Skills](https://agentskills.io/specification) format. Name the agents they work in, e.g. Claude Code, Codex, Cursor, Copilot, OpenCode, or any SKILL.md-compatible agent.>
 
 <a id="skills"></a>
 ## 🧩 Skills
