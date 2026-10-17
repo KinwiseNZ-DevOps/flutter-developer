@@ -10,5 +10,6 @@
       "file": "pubspec.yaml",
       "contains": "flutter"
     }
-  ]
+  ],
+  "features": {}
 }
