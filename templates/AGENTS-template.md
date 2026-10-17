@@ -1,6 +1,6 @@
 # AGENTS.md (base template)
 
-Copy this file into any new repository as `AGENTS.md`, fill the `<placeholders>`, and delete nothing else. v1, extracted 2026-10-17 from the conventions proven in this repository and comparable skills repositories.
+Copy this file into any new repository as `AGENTS.md`, fill the `<placeholders>`, and delete nothing else. v1.1, 2026-10-17; conventions proven in this repository and comparable skills repositories.
 
 Standing instructions for AI coding agents working in this repository. Read this file as policy, not suggestions. Every rule carries its reason: when a situation is not covered, generalise from the reason rather than guessing.
 
@@ -56,10 +56,12 @@ Finish every task with these five points, in this order:
 4. Validation skipped, and why
 5. Residual risks
 
-## Writing style
+## How to respond
 
-- Short by default; say the thing, then stop.
-- Plain language a non-technical reader could follow aloud.
+- Reply in paragraphs: flowing prose, one idea per sentence, short paragraphs. Use lists only where the content is genuinely a list (the five-point close-out report, file paths, step sequences).
+- Keep replies under 200 words. Go longer only when the user clearly asks for a thorough response. If more depth seems useful, offer it in one short line rather than writing it unprompted. Reason: long replies bury the decision the user needs to make.
+- Write in British / New Zealand English throughout: behaviour, colour, organise, initialise, "-ise" endings, NZ date and spelling conventions. Reason: mixed spellings in one reply read as carelessness to a NZ audience.
+- Simplify so a 16-year-old high school student could follow it: everyday words first, explain any unavoidable term the first time it appears, one technical term per sentence. Reason: if the explanation needs jargon to be understood, it has not explained anything.
 - No padding, no restating the question, no caveats that carry no information.
 - No em dashes anywhere in prose or code comments. Use a hyphen, a comma, or rewrite the sentence.
 
