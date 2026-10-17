@@ -1,0 +1,14 @@
+{
+  "id": "flutter-developer",
+  "name": "Flutter Developer",
+  "phrase": "flutter",
+  "rules": "skills/flutter-developer/references/always-on-rules.md",
+  "defaultMode": "on",
+  "autoDetect": true,
+  "autoMarkers": [
+    {
+      "file": "pubspec.yaml",
+      "contains": "flutter"
+    }
+  ]
+}

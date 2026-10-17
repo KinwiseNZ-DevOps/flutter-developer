@@ -48,6 +48,8 @@ Checks: frontmatter, name/folder match, description length and trigger, body und
 - `SETUP.md`, `templates/`, and `reference-content/` are local setup material that stays ignored and outside the Git index when a repo is published. Reason: the maintainer needs these files for future work, while public commits must exclude bootstrap material and private sources.
 - Custom to this repo: `skills/flutter-developer/SKILL.md` holds the router and shared guardrails. Every sibling skill links back to it. Architecture advice keeps the source's Strongly recommend, Recommend or Conditional label. Reason: the Flutter team states these are recommendations to adapt.
 
+- `hooks/`: the always-on start-up hook. `hooks/always-on.config.json` holds the id, name, phrase, rules path and auto-detect markers; `skills/flutter-developer/references/always-on-rules.md` is the only source of the rules it loads. Keep that file under 320 words. Reason: it is paid for in tokens at the start of every session, and a copy would drift from the skills. The saved mode (on, off or auto) lives in the user's `~/.claude/.flutter-developer.mode`, never in this repo.
+
 ## Irreversible and shared actions
 
 - Proceed freely for local, reversible actions: editing files, running checks, regenerating the catalogue.
