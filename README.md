@@ -50,7 +50,6 @@ Checks: frontmatter, name/folder match, description length and trigger, body und
 
 ```
 skills/<name>/SKILL.md      one folder per skill (+ references/ where needed)
-templates/skill-template/   authoring template for new skills
 evals/cases.jsonl           3+ behavioural cases per skill
 scripts/skills_tool.py      validate, regenerate catalogue (stdlib only)
 .github/workflows/          CI runs `skills_tool.py check` (free on public repos)

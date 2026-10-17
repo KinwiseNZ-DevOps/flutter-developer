@@ -41,7 +41,7 @@ Checks: frontmatter, name/folder match, description length and trigger, body und
 ## Repository map (fill in as this repo takes shape)
 
 - `skills/<name>/SKILL.md`: the only source of skill content. Folder name equals frontmatter `name`.
-- `templates/skill-template/SKILL.md`: the authoring template every new skill starts from. `<add repo-specific canonical sources, generated artefacts that must not be hand-edited, and editing rules, each with a reason>`
+- New skills follow the house format that existing skills embody: folder name equals frontmatter `name`; frontmatter, gate, steps, hard rules. (`templates/skill-template/` exists only while this repo is being set up; it is deleted when the repo ships.) `<add repo-specific canonical sources, generated artefacts that must not be hand-edited, and editing rules, each with a reason>`
 - Custom to this repo: `<e.g. shared guardrails file paths, router links, doc-source rules>`
 
 ## Irreversible and shared actions

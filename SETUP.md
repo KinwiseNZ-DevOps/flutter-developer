@@ -31,6 +31,7 @@ python scripts/skills_tool.py check       # must end: ok (N skills)
 - [ ] Enable Actions in Settings; the workflow runs on pushes to `main` and PRs
 - [ ] Set the GitHub "About" description and add topics (`agent-skills` at minimum)
 - [ ] Delete `SETUP.md`
+- [ ] Delete `templates/` (it is bootstrap scaffolding only; from now on, existing skills are the format reference, and `AGENTS.md` already reflects that)
 
 ## 5. Do not
 
