@@ -20,6 +20,8 @@ Supported host destinations are:
 | `github-copilot` | `.github/agents/` |
 | `codex` | `agents/codex/` |
 
+In a profile body, never write `skills/<name>/SKILL.md` paths. They do not exist in a user's project or in an installed plugin. Name the skill and list it under `skills:` in the Claude Code frontmatter instead; the validator rejects the path form. Claude Code profiles must also be listed in the `agents` array of `.claude-plugin/plugin.json`.
+
 Profiles use host-native formats. Other compatible hosts receive skills only. The installer copies without replacing existing files and requires exactly one main profile ending in `-workflow`, with no more than one helper. If a target already has a different file with the same name, it reports the conflict and makes no changes.
 
 Codex files are prompt briefs rather than auto-discovered subagents. When supplied, the installer adds a marked routing block to the target's `AGENTS.md`; Codex can delegate using native subagents when available or follow the brief directly.

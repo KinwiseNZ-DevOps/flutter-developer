@@ -1,0 +1,14 @@
+{
+  "name": "flutter-developer-marketplace",
+  "owner": {
+    "name": "KinWise Limited"
+  },
+  "description": "Agent skills for Dart and Flutter development.",
+  "plugins": [
+    {
+      "name": "flutter-developer",
+      "source": "./",
+      "description": "Skills for writing, structuring, researching and maintaining Dart and Flutter code to the official Dart and Flutter guidance."
+    }
+  ]
+}

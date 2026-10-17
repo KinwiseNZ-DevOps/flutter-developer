@@ -34,7 +34,7 @@ Before reporting any change done, run:
 python scripts/skills_tool.py check
 ```
 
-Checks: frontmatter, name/folder match, description length and trigger, body under 500 lines, every relative link resolves (including README.md and AGENTS.md), agent profile naming with no more than two profiles per host and exactly one `-workflow` main agent, at least 3 eval cases per skill, catalogue not stale, no project-specific terms from `reference-content/strip-terms.txt`, and no em or en dashes in file names or in any text outside `reference-content/`. Once `skills/example-skill/` is deleted it also fails on leftover `<placeholder>` text and setup-only paths that are tracked by Git or not ignored.
+Checks: frontmatter, name/folder match, description length and trigger, body under 500 lines, every relative link resolves (including README.md and AGENTS.md), agent profile naming with no more than two profiles per host and exactly one `-workflow` main agent, agent `skills:` entries that exist and no `skills/<name>/SKILL.md` paths in agent bodies, plugin manifests valid and consistent with `LICENSE` and the profiles, at least 3 eval cases per skill, catalogue not stale, no project-specific terms from `reference-content/strip-terms.txt`, and no em or en dashes in file names or in any text outside `reference-content/`. Once `skills/example-skill/` is deleted it also fails on leftover `<placeholder>` text and setup-only paths that are tracked by Git or not ignored.
 
 - The tool is necessary but not sufficient for content quality. For new or changed skill body text, also re-read the changed SKILL.md end to end. Reason: a validator checks structure; only reading checks that the instructions still make sense.
 
@@ -42,10 +42,11 @@ Checks: frontmatter, name/folder match, description length and trigger, body und
 
 - `skills/<name>/SKILL.md`: the only source of skill content. Folder name equals frontmatter `name`.
 - `resources/agents/`: optional, host-native profile sources consumed by `scripts/install_agents.py`. Shared agent names use the `shared-` namespace; skill-specific agent names use `<owning-skill-slug>-<role>`. No `*.agent.md` files for a host means there are no profiles to install for that host.
-- `.github/agents/`, `.claude/agents/`, and `agents/codex/`: optional installed host profiles and Codex role briefs. The installer creates these folders only when it has profiles to copy and never replaces an existing different file.
-- New skills follow the house format that existing skills embody: folder name equals frontmatter `name`; frontmatter, gate, steps, hard rules. `<add repo-specific canonical sources, generated artefacts that must not be hand-edited, and editing rules, each with a reason>`
+- `.claude-plugin/plugin.json` and `marketplace.json`: the Claude Code plugin manifest and single-plugin marketplace. The `agents` array lists each Claude Code profile under `resources/agents/claude-code/`. Reason: without the key, Claude Code scans a top-level `agents/` folder and would load Codex briefs as subagents.
+- `.github/agents/`, `.claude/agents/`, and `agents/codex/`: optional installed host profiles and Codex role briefs in a target project, never in this repo. The installer creates these folders only when it has profiles to copy and never replaces an existing different file.
+- New skills follow the house format that existing skills embody: folder name equals frontmatter `name`; frontmatter, gate, steps, hard rules. The `references/` files inside each skill are distilled from official sources (Effective Dart, the Flutter architecture recommendations, the GNU Make manual). Edit a reference file, not a restatement of it in a SKILL.md. Reason: copies drift. The README skills table between the catalogue markers is generated; never hand-edit it. Reason: the catalogue command overwrites it.
 - `SETUP.md`, `templates/`, and `reference-content/` are local setup material that stays ignored and outside the Git index when a repo is published. Reason: the maintainer needs these files for future work, while public commits must exclude bootstrap material and private sources.
-- Custom to this repo: `<e.g. shared guardrails file paths, router links, doc-source rules>`
+- Custom to this repo: `skills/flutter-developer/SKILL.md` holds the router and shared guardrails. Every sibling skill links back to it. Architecture advice keeps the source's Strongly recommend, Recommend or Conditional label. Reason: the Flutter team states these are recommendations to adapt.
 
 ## Irreversible and shared actions
 
@@ -58,7 +59,7 @@ Checks: frontmatter, name/folder match, description length and trigger, body und
 
 ## Known deliberate states (dated)
 
-- `<record deliberate temporary states here, each with a date and a reason>`
+- 2026-10-18: no agent profiles are supplied under `resources/agents/`. Reason: the six skills run directly and a profile was not needed yet.
 
 ## Anti-drift close-out
 
