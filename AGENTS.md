@@ -15,6 +15,8 @@ Agent map and standing rules for this repository. Read this file as policy, not 
   - Add error handling, fallbacks, or caveats for scenarios that cannot happen (e.g. already covered by the validator).
   - Create helpers or abstractions for one-time operations, or design for hypothetical requirements.
   - Refactor or "improve" anything beyond what the task asked.
+  - Add comments beyond what the code genuinely needs. Keep the codebase mostly clean: comment only where the logic is not self-evident, and keep those comments short. Reason: comments that restate the code rot into lies; the code is read far more often than it is written.
+  - Leave useless comments behind. When editing a file, delete comments in the lines you touch that are wrong, outdated, or say nothing the code does not already say. Reason: dead comments accumulate until readers stop trusting every comment, including the useful ones.
 - Prefer editing the source of a rule over editing a restatement of it. Reason: copies drift.
 
 ## Accuracy and honesty
