@@ -3,9 +3,11 @@ name: flutter-design-system
 description: >
   Applies a design system in Flutter through the theme layer: ThemeData,
   ColorScheme, TextTheme, ThemeExtension design tokens, light and dark themes,
-  shared themed widgets and accessibility checks. Use when theming an app,
-  mapping a design team's tokens to Flutter, removing hard-coded colours or
-  sizes, adding dark mode, or checking contrast, tap targets and text scaling.
+  shared themed widgets, accessibility checks and dashboard screens (stat
+  strips, cards, adaptive layout). Use when theming an app, mapping a design
+  team's tokens to Flutter, removing hard-coded colours or sizes, adding dark
+  mode, checking contrast, tap targets and text scaling, or building a
+  dashboard or data-heavy screen.
   Do not use for app structure (flutter-architecture) or for API integration.
 ---
 
@@ -22,6 +24,7 @@ Stance: design values live in the theme, once. Frozen: no literal colours, font 
 | A value has no Material home (spacing, semantic colours, radii) | Put it in a `ThemeExtension` |
 | One widget needs a one-off look | Use a local `Theme` with `copyWith`, or a widget parameter |
 | The design system and Material defaults disagree | Theme the component first; build a custom widget last |
+| Building a dashboard or data-heavy screen | Follow [dashboard-ui.md](references/dashboard-ui.md): stat strip, cards, adaptive layout, then its checklist |
 
 Reason: every extra token system is one more place for values to drift from the design.
 
@@ -32,6 +35,8 @@ Reason: every extra token system is one more place for values to drift from the 
 3. **Build the theme.** `ColorScheme.fromSeed` (or an explicit scheme from the design) plus `textTheme`, supplied as both `theme` and `darkTheme`. Add a `ThemeExtension` with `copyWith` and `lerp` for custom tokens, and read it with `Theme.of(context).extension<T>()`.
 4. **Replace literals.** Swap widget literals for `Theme.of(context)` lookups. Put shared themed widgets in one core directory.
 5. **Verify accessibility.** Check contrast of 4.5:1, tap targets of at least 48 by 48, labels for custom controls, and large text without overflow. Run the `flutter_test` guideline matchers in widget tests, and test with a screen reader.
+
+6. **Dashboards.** Put the page heading first, then a stat strip, then cards. Decide the layout from the window width, give empty, loading and error states a design, and run the checklist in [dashboard-ui.md](references/dashboard-ui.md).
 
 Full detail: [theming-and-accessibility.md](references/theming-and-accessibility.md).
 
@@ -45,12 +50,19 @@ Full detail: [theming-and-accessibility.md](references/theming-and-accessibility
 - Prefer `Theme.of(context).copyWith(...)` to a fresh `ThemeData` for local overrides. Mechanism: a fresh theme ignores the app theme and breaks dark mode in that subtree.
 - Build `ThemeData` and `ThemeExtension` instances once, outside `build`. Mechanism: creating them inside `build` allocates new objects on every rebuild; hand rebuild-cost questions to the performance companion.
 - Provide text-on-colour "ink" variants for accent colours used as text, and cover them with a contrast test. Mechanism: a fill colour that looks right as a background often fails 4.5:1 as text.
+- Never signal status with colour alone. Pair it with an arrow, a sign or a word, and give it a spoken label. Mechanism: WCAG 1.4.1 requires another cue because some users cannot tell the colours apart, and a screen reader cannot read a colour.
+- Use tabular figures for numbers that line up, and check the font supports them. Mechanism: proportional digits make columns of figures jitter, and a font without tabular digits ignores the setting.
+- Choose the layout from the window width (`MediaQuery.sizeOf`) for the app shell and from `LayoutBuilder` inside reusable widgets, not from device type. Mechanism: a small window on a large screen is misread as a phone, and a widget that reads the whole window cannot be reused in a narrow slot.
+- Send every displayed number through one formatter, never a raw `toString()`. Mechanism: locale, currency and rounding rules differ, and scattered formatting drifts.
+- Give empty, loading and error states a design, and check the screen at 360 and 900 px wide, in light and dark, and at 200 percent text. Mechanism: most of the states a screen is in are not the happy path.
 - Do not use fixed heights on text containers. Mechanism: large text settings overflow them.
 - Do not turn off Material 3 in new code. Mechanism: it is the framework default from Flutter 3.16 onward (verify against the Flutter version in use), so opting out leaves a one-off look to maintain.
 
 ## References
 
 - [theming-and-accessibility.md](references/theming-and-accessibility.md): theme resolution order, tokens, external design systems, accessibility checklist, review list.
+- [dashboard-ui.md](references/dashboard-ui.md): principles, a starting scale, page shapes, components, dashboard layout rules, accessibility, dark mode and a screen checklist.
+- [dashboard-starter.dart](references/dashboard-starter.dart): a small starter with a tokens class, card, change chip, stat tile and stat strip.
 
 ## Next
 
