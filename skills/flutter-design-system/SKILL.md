@@ -25,6 +25,7 @@ Stance: design values live in the theme, once. Frozen: no literal colours, font 
 | One widget needs a one-off look | Use a local `Theme` with `copyWith`, or a widget parameter |
 | The design system and Material defaults disagree | Theme the component first; build a custom widget last |
 | Building a dashboard or data-heavy screen | Follow [dashboard-ui.md](references/dashboard-ui.md): stat strip, cards, adaptive layout, then its checklist |
+| Someone points at a web component catalogue ("we need tables, tabs, a command palette like this") | Use [web-blocks-to-flutter.md](references/web-blocks-to-flutter.md): map each block to a Flutter widget, check what the project already has, and never copy the kit's code |
 
 Reason: every extra token system is one more place for values to drift from the design.
 
@@ -50,6 +51,10 @@ Full detail: [theming-and-accessibility.md](references/theming-and-accessibility
 - Prefer `Theme.of(context).copyWith(...)` to a fresh `ThemeData` for local overrides. Mechanism: a fresh theme ignores the app theme and breaks dark mode in that subtree.
 - Build `ThemeData` and `ThemeExtension` instances once, outside `build`. Mechanism: creating them inside `build` allocates new objects on every rebuild; hand rebuild-cost questions to the performance companion.
 - Provide text-on-colour "ink" variants for accent colours used as text, and cover them with a contrast test. Mechanism: a fill colour that looks right as a background often fails 4.5:1 as text.
+- Do not copy a commercial UI kit's markup or code into the repository. Build each block from Flutter's own widgets and the project's theme. Mechanism: kit code is licensed, and a copy in a public or shared repository can breach the licence.
+- Check what the project already has before adding a block, and extend that. Mechanism: a second empty-state or card widget beside an existing one splits the design system in two.
+- Use `PaginatedDataTable` or a lazy list for large tables, not `DataTable`. Mechanism: `DataTable` measures every row twice and is not lazy, so large data makes it slow.
+- Wrap a labelled group of separate controls (such as breadcrumbs) with `explicitChildNodes: true`. Mechanism: without it a screen reader merges the items into one node and cannot announce the current page.
 - Never signal status with colour alone. Pair it with an arrow, a sign or a word, and give it a spoken label. Mechanism: WCAG 1.4.1 requires another cue because some users cannot tell the colours apart, and a screen reader cannot read a colour.
 - Use tabular figures for numbers that line up, and check the font supports them. Mechanism: proportional digits make columns of figures jitter, and a font without tabular digits ignores the setting.
 - Choose the layout from the window width (`MediaQuery.sizeOf`) for the app shell and from `LayoutBuilder` inside reusable widgets, not from device type. Mechanism: a small window on a large screen is misread as a phone, and a widget that reads the whole window cannot be reused in a narrow slot.
@@ -63,6 +68,8 @@ Full detail: [theming-and-accessibility.md](references/theming-and-accessibility
 - [theming-and-accessibility.md](references/theming-and-accessibility.md): theme resolution order, tokens, external design systems, accessibility checklist, review list.
 - [dashboard-ui.md](references/dashboard-ui.md): principles, a starting scale, page shapes, components, dashboard layout rules, accessibility, dark mode and a screen checklist.
 - [dashboard-starter.dart](references/dashboard-starter.dart): a small starter with a tokens class, card, change chip, stat tile and stat strip.
+- [web-blocks-to-flutter.md](references/web-blocks-to-flutter.md): web UI block types mapped to Flutter widgets, with what to build first.
+- [ui_blocks.dart](references/ui_blocks.dart): a tested starter with an adaptive shell, page heading, empty state, breadcrumbs, command palette and paged table.
 
 ## Next
 
