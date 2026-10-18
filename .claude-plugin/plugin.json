@@ -11,5 +11,6 @@
     "agent-skills",
     "flutter",
     "dart"
-  ]
+  ],
+  "experimental": { "evals": "quality/evals" }
 }

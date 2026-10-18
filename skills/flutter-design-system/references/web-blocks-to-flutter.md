@@ -1,5 +1,7 @@
 # Web UI blocks and their Flutter equivalents
 
+Contents: How to adapt a block, application shells and layout, data display and lists, forms and inputs, feedback and navigation, overlays and elements, page examples, what to build first, starter code, sources
+
 Use a web component catalogue as a checklist of UI needs, not as code. Commercial component kits are licensed, so do not copy their markup or code into your repository. Take the category names ("tables", "empty states", "command palettes"), decide which ones your app needs, and build each with Flutter's own widgets and your theme.
 
 Trust levels: rows marked (official) were checked against the Flutter API page named in Sources. "(general)" means standard Flutter practice that was not re-checked in this pass. "(inference)" is the author's reading. Checked 2026-10-18.

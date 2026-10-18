@@ -1,5 +1,7 @@
 # Dashboard UI in Flutter
 
+Contents: Six principles, a starting scale, page shapes, components, layout rules for dashboards, accessibility, dark mode, checklist for a new dashboard screen, starter widgets, worked example, sources
+
 Trust levels: the starting scale and the "ethic" below are team-written practice, not an official Flutter standard. Items marked (official) were checked against the page named in Sources. "(inference)" marks the author's reading. Checked 2026-10-18.
 
 ## 1. Six principles

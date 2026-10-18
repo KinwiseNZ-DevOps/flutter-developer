@@ -1,5 +1,7 @@
 # Integrating a Flutter client with a Django REST Framework API
 
+Contents: Shape of the client, contract: keep both sides in step, field mapping facts that cause bugs, authentication, error contract, lists and pagination, environments, web and CORS, testing the integration, confirm from the schema checklist, offline writes and caching, single client, single refresh, single parser, hand-offs to companion skills
+
 Facts here come from official or maintainer documentation fetched on 2026-10-18. Each section says which source it rests on. "(inference)" marks the author's reading, which should be checked against the project's own backend before being relied on.
 
 Sources:
