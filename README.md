@@ -21,7 +21,7 @@
 
 [![Validate skills](https://github.com/KinwiseNZ-DevOps/flutter-developer/actions/workflows/validate.yml/badge.svg)](https://github.com/KinwiseNZ-DevOps/flutter-developer/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Agent skills](https://img.shields.io/badge/agent_skills-8-8A2BE2)](https://agentskills.io)
+[![Agent skills](https://img.shields.io/badge/agent_skills-9-8A2BE2)](https://agentskills.io)
 [![Format](https://img.shields.io/badge/format-SKILL.md-orange)](https://agentskills.io/specification)
 [![Tooling](https://img.shields.io/badge/tooling-stdlib_only-success)](scripts/skills_tool.py)
 
@@ -57,6 +57,7 @@ These skills turn the Dart team's Effective Dart guide, the Flutter team's archi
 | [`flutter-design-system`](skills/flutter-design-system/SKILL.md) | Applies a design system in Flutter through the theme layer: ThemeData, ColorScheme, TextTheme, ThemeExtension design tokens, light and dark themes, shared themed widgets, accessibility checks and dashboard screens (stat strips, cards, adaptive layout). |
 | [`flutter-developer`](skills/flutter-developer/SKILL.md) | Router and shared guardrails for Dart and Flutter development work, including Django API integration and design systems: picks the right specialist skill and enforces verify-before-claiming, smallest-change and honest close-out rules. |
 | [`flutter-django-integration`](skills/flutter-django-integration/SKILL.md) | Guides the Flutter side of integrating with a Django REST Framework backend: service and repository layering, OpenAPI contract and client generation, JSON model mapping, JWT authentication and token storage, error and validation mapping, pagination, environments and web CORS. |
+| [`flutter-migration`](skills/flutter-migration/SKILL.md) | Plans and performs Flutter and Dart SDK upgrades and breaking-change migrations: deprecated API removals, Android Gradle Plugin and Kotlin build changes, and other changes listed on the Flutter breaking-changes page. |
 | [`flutter-task-research`](skills/flutter-task-research/SKILL.md) | Runs a research-only investigation before a task is planned: reads the codebase and authoritative sources, records verified findings in one research note, weighs alternatives and converges on a single recommended approach without editing code. |
 | [`flutter-tech-debt-plan`](skills/flutter-tech-debt-plan/SKILL.md) | Produces a scored technical debt remediation plan for Flutter and Dart code, tests and documentation, with a summary table and a detailed plan per item, without changing code. |
 | [`make-automation`](skills/make-automation/SKILL.md) | Writes and reviews GNU Make Makefiles that wrap repeatable project commands such as code generation, analysis, tests and builds, covering structure, variables, phony targets, recipes, includes and portability. |
@@ -77,6 +78,7 @@ flowchart TD
     R --> F["🔌 flutter-django-integration<br/>Django REST API client, auth, errors, pagination"]
     R --> G["🎨 flutter-design-system<br/>themes, design tokens, accessibility"]
     R --> E["🛠️ make-automation<br/>Makefiles for build and test commands"]
+    R --> H["⬆️ flutter-migration<br/>SDK upgrades and breaking-change fixes"]
 ```
 
 Most work starts at the router. Research comes before a change that needs understanding, and standards and architecture apply while the change is written.
@@ -95,6 +97,10 @@ Most work starts at the router. Research comes before a change that needs unders
 /plugin marketplace add KinwiseNZ-DevOps/flutter-developer
 /plugin install flutter-developer@flutter-developer-marketplace
 ```
+**ChatGPT desktop plugin** (local, skills and bundled hooks):
+
+This repo has a portable `plugin.json` manifest and a repo marketplace at `.agents/plugins/marketplace.json`. Open this repo as a trusted project and restart ChatGPT desktop, then install **Flutter Developer** from the Plugins Directory. Review and trust bundled hook scripts before they run.
+
 
 For best results also install the optional companions `flutter-optimiser` (performance) and `django-api-architect` (Django server code). The integration skill names the exact companion skill to use for each concern.
 

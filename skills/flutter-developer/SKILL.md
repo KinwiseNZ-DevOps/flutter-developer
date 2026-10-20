@@ -34,6 +34,7 @@ Reason: routing a trivial fix through a full workflow wastes effort, and routing
 | Calling a Django REST API: models, auth, errors, pagination, CORS | [flutter-django-integration](../flutter-django-integration/SKILL.md) |
 | Theming, design tokens, dark mode, contrast, tap targets, text scaling, dashboards and stat screens | [flutter-design-system](../flutter-design-system/SKILL.md) |
 | Makefile targets that wrap build, analyse, generate or test commands | [make-automation](../make-automation/SKILL.md) |
+| Flutter or Dart SDK upgrades, deprecation warnings, Android Gradle Plugin or Kotlin build changes | [flutter-migration](../flutter-migration/SKILL.md) |
 
 ## Steps
 
