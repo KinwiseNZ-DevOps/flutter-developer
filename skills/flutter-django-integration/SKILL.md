@@ -25,6 +25,7 @@ Stance: the backend's real behaviour is the contract, and the client must follow
 | Offline writes are wanted | Queue only writes the backend makes safe to replay; do not assume an idempotency header is honoured |
 | A performance question comes up (large payloads, caches, aggregation) | Measure first, then hand off to the performance companion below |
 | The change needs backend edits | State what the server must change; do not guess its code from the client |
+| The app presents a bank payment or bank data consent (BlinkPay or similar) | See [open-banking-blinkpay.md](references/open-banking-blinkpay.md); the app never calls the provider directly |
 
 Reason: a client built on guessed server behaviour works until the first real response differs, and then fails in production.
 
@@ -54,6 +55,8 @@ Reason: a client built on guessed server behaviour works until the first real re
 - Use an isolate for JSON work only after a profile shows the main thread blocked. Mechanism: isolates add copying cost and complexity, and small pages rarely need them.
 - Do not enable broad CORS on the server to make a web build work. Mechanism: allowing all origins lets any site call the API; list the exact web origin instead. Native apps are not subject to browser CORS.
 - Mark inference as inference. The reference separates official facts from advice.
+- Never open a bank or payment-provider page in an embedded `WebView`. Mechanism: banks block framed pages, and a `WebView` the app controls defeats the point of the customer authenticating directly with their bank rather than through the app; use the platform's in-app browser (Custom Tabs / `SFSafariViewController`) instead.
+- Never treat a payment return link as proof of an outcome; re-fetch status from the backend on both the link and on app resume. Mechanism: the link can be forged (any app can claim the same custom scheme), can carry a stale or unrelated `cid`, and frequently never arrives at all if the customer backgrounds or kills the app mid-flow.
 
 ## Companion plugins (use when installed)
 
@@ -66,12 +69,14 @@ Use these alongside this skill; if they are not installed, follow this skill and
 | Token endpoints, refresh, blacklist, login throttling | django-auth |
 | Constraint-backed writes and replay safety | django-services-selectors |
 | CORS origins and settings | django-project-structure |
+| BlinkPay payment and account-data API, server side | django-open-banking (via django-api-architect) |
 
 This skill decides what the client needs; the Django skills own how the server provides it. Never edit server code from the Flutter side; state the required backend change instead.
 
 ## References
 
 - [integration-guide.md](references/integration-guide.md): layering, contract, field mapping, auth, errors, pagination, environments, offline writes, tests, with sources.
+- [open-banking-blinkpay.md](references/open-banking-blinkpay.md): presenting a BlinkPay bank payment or data consent from the app, the in-app browser, the return link, and reconciling the outcome.
 
 ## Next
 

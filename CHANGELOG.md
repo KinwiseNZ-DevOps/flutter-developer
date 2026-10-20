@@ -4,6 +4,11 @@ All notable changes to this plugin are listed here, newest first. To cut a relea
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-20
+
+- Added BlinkPay open banking guidance to flutter-django-integration: in-app browser, return-link handling, app-resume reconciliation, platform deep-link setup, and what not to copy from BlinkPay's reference Flutter demo.
+
 ## [0.5.0] - unreleased
 
 - Initial skills.
+- Added flutter-migration: Flutter and Dart SDK upgrades, breaking-change fixes, and the Android Gradle Plugin 9 built-in Kotlin migration.
