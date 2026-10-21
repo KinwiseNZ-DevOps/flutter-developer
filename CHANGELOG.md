@@ -4,6 +4,8 @@ All notable changes to this plugin are listed here, newest first. To cut a relea
 
 ## [Unreleased]
 
+- Added `flutter-widget-fundamentals`: widget kind, const, State lifecycle, keys, layout constraints, forms, navigation basics and error reading, distilled from beginner Flutter course slides.
+
 ## [0.6.0] - 2026-10-20
 
 - Added BlinkPay open banking guidance to flutter-django-integration: in-app browser, return-link handling, app-resume reconciliation, platform deep-link setup, and what not to copy from BlinkPay's reference Flutter demo.

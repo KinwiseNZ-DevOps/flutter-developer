@@ -32,6 +32,7 @@ Reason: routing a trivial fix through a full workflow wastes effort, and routing
 | Understanding a codebase or comparing approaches before any change | [flutter-task-research](../flutter-task-research/SKILL.md) |
 | Finding and scoring technical debt, producing a remediation plan | [flutter-tech-debt-plan](../flutter-tech-debt-plan/SKILL.md) |
 | Calling a Django REST API: models, auth, errors, pagination, CORS | [flutter-django-integration](../flutter-django-integration/SKILL.md) |
+| Widget and screen code: stateless or stateful, const, keys, layout constraint errors, forms, dispose, local state, reading Flutter errors | [flutter-widget-fundamentals](../flutter-widget-fundamentals/SKILL.md) |
 | Theming, design tokens, dark mode, contrast, tap targets, text scaling, dashboards and stat screens | [flutter-design-system](../flutter-design-system/SKILL.md) |
 | Makefile targets that wrap build, analyse, generate or test commands | [make-automation](../make-automation/SKILL.md) |
 | Flutter or Dart SDK upgrades, deprecation warnings, Android Gradle Plugin or Kotlin build changes | [flutter-migration](../flutter-migration/SKILL.md) |

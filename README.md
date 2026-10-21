@@ -21,7 +21,7 @@
 
 [![Validate skills](https://github.com/KinwiseNZ-DevOps/flutter-developer/actions/workflows/validate.yml/badge.svg)](https://github.com/KinwiseNZ-DevOps/flutter-developer/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Agent skills](https://img.shields.io/badge/agent_skills-9-8A2BE2)](https://agentskills.io)
+[![Agent skills](https://img.shields.io/badge/agent_skills-10-8A2BE2)](https://agentskills.io)
 [![Format](https://img.shields.io/badge/format-SKILL.md-orange)](https://agentskills.io/specification)
 [![Tooling](https://img.shields.io/badge/tooling-stdlib_only-success)](scripts/skills_tool.py)
 
@@ -60,6 +60,7 @@ These skills turn the Dart team's Effective Dart guide, the Flutter team's archi
 | [`flutter-migration`](skills/flutter-migration/SKILL.md) | Plans and performs Flutter and Dart SDK upgrades and breaking-change migrations: deprecated API removals, Android Gradle Plugin and Kotlin build changes, and other changes listed on the Flutter breaking-changes page. |
 | [`flutter-task-research`](skills/flutter-task-research/SKILL.md) | Runs a research-only investigation before a task is planned: reads the codebase and authoritative sources, records verified findings in one research note, weighs alternatives and converges on a single recommended approach without editing code. |
 | [`flutter-tech-debt-plan`](skills/flutter-tech-debt-plan/SKILL.md) | Produces a scored technical debt remediation plan for Flutter and Dart code, tests and documentation, with a summary table and a detailed plan per item, without changing code. |
+| [`flutter-widget-fundamentals`](skills/flutter-widget-fundamentals/SKILL.md) | Applies core Flutter widget practice when writing or fixing widget code: stateless versus stateful choice, const widgets, the State lifecycle and disposing controllers, keys in reorderable lists, layout constraint errors, updating state without mutating shared lists, forms and validation, basic screen navigation, implicit animations, adaptive layout and reading error messages. |
 | [`make-automation`](skills/make-automation/SKILL.md) | Writes and reviews GNU Make Makefiles that wrap repeatable project commands such as code generation, analysis, tests and builds, covering structure, variables, phony targets, recipes, includes and portability. |
 <!-- catalogue:end -->
 
@@ -73,6 +74,7 @@ flowchart TD
     R["⚡ flutter-developer<br/>routes work and enforces shared guardrails"]
     R --> A["🧹 dart-code-standards<br/>Effective Dart style, usage and API design"]
     R --> B["🏗️ flutter-architecture<br/>layers, MVVM, repositories, testing"]
+    R --> W["🧱 flutter-widget-fundamentals<br/>widgets, state, keys, layout, forms"]
     R --> C["🔍 flutter-task-research<br/>research-only investigation"]
     R --> D["📋 flutter-tech-debt-plan<br/>scored remediation plans"]
     R --> F["🔌 flutter-django-integration<br/>Django REST API client, auth, errors, pagination"]
@@ -169,6 +171,7 @@ Privacy: `packageGuard` and `licenseGuard` send package names, and `linkGuard` s
 | Just say… | What you get | Skill used |
 |---|---|---|
 | `Where should this logic live?` | A layer decision with reasons | *flutter-architecture* |
+| `Why is my widget state wrong?` | The widget, key or constraint cause and a fix | *flutter-widget-fundamentals* |
 | `Review my Dart style` | Findings against Effective Dart | *dart-code-standards* |
 | `Research this before we change it` | One research note, one recommendation | *flutter-task-research* |
 | `Audit tech debt in lib` | A scored remediation plan | *flutter-tech-debt-plan* |
