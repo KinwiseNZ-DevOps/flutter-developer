@@ -4,6 +4,8 @@ All notable changes to this plugin are listed here, newest first. To cut a relea
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-10-22
+
 - Added `flutter-widget-fundamentals`: widget kind, const, State lifecycle, keys, layout constraints, forms, navigation basics and error reading, distilled from beginner Flutter course slides.
 
 ## [0.6.0] - 2026-10-20
