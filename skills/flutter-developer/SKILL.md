@@ -51,6 +51,7 @@ Reason: routing a trivial fix through a full workflow wastes effort, and routing
 - Do not add comments, abstractions, error handling or refactors the task did not ask for. Mechanism: each extra line is extra review burden and extra risk.
 - Do not claim completion beyond the evidence. State which checks ran and their results, which were skipped and why, and what risk remains. Mechanism: an unqualified "done" hides the gap between written and verified.
 - Keep project-specific facts out of shared guidance; read the project's architecture at runtime instead.
+- Treat the user's description of their own system as the working fact. Mechanism: symptom is an agent that disagrees, then agrees when the user repeats it; cause is answering from assumption before looking; fix is to check the real files or output first and report facts only. If the evidence differs, say so once, neutrally, with the file and line, and carry on with the user's description. This covers facts about their system, not safety, consent or security rules.
 
 ## Companion plugins (use when installed)
 

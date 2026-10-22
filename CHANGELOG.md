@@ -4,6 +4,10 @@ All notable changes to this plugin are listed here, newest first. To cut a relea
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-10-23
+
+- Added the rule to trust the user's description of their own system: check the real files, report facts only, and never argue then concede. It is in the always-on rules, the router hard rules, AGENTS.md and the agent profiles.
+
 ## [0.7.0] - 2026-10-22
 
 - Added `flutter-widget-fundamentals`: widget kind, const, State lifecycle, keys, layout constraints, forms, navigation basics and error reading, distilled from beginner Flutter course slides.
