@@ -4,6 +4,9 @@ All notable changes to this plugin are listed here, newest first. To cut a relea
 
 ## [Unreleased]
 
+- The validator now checks the Codex manifests (`plugin.json`, `.agents/plugins/marketplace.json`) against the Claude ones.
+- Fixed the Codex short description, which was cut off mid-sentence.
+
 - Added triggering tests (`evals/triggers.jsonl`): every skill has an obvious, a paraphrase and an unrelated query, checked by the validator and exported as `tool_used` graders.
 - The always-on rules now default to `auto`, so they load only in Flutter projects (a `pubspec.yaml` that mentions Flutter).
 - Moved Hard rules to the top of every skill, above the gate.
