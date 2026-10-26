@@ -16,12 +16,6 @@
 {"skill": "flutter-migration", "type": "obvious", "query": "Upgrade our app to the latest Flutter stable and fix the deprecation warnings."}
 {"skill": "flutter-migration", "type": "paraphrase", "query": "After we bumped Gradle our Android build fails with a Kotlin error."}
 {"skill": "flutter-migration", "type": "unrelated", "query": "Add a dark theme to the app."}
-{"skill": "flutter-task-research", "type": "obvious", "query": "Research how we could add offline support to the app before we plan it. Do not change any code."}
-{"skill": "flutter-task-research", "type": "paraphrase", "query": "Compare a few ways of doing push notifications and tell me which one you would recommend, without writing code."}
-{"skill": "flutter-task-research", "type": "unrelated", "query": "Implement offline caching for the transactions list."}
-{"skill": "flutter-tech-debt-plan", "type": "obvious", "query": "Audit our Flutter codebase for tech debt and give me a scored plan."}
-{"skill": "flutter-tech-debt-plan", "type": "paraphrase", "query": "We have been moving fast. Find the messy parts, missing tests and stale docs and rank what to clean up first, without touching code."}
-{"skill": "flutter-tech-debt-plan", "type": "unrelated", "query": "Fix the failing test in the budgets view model."}
 {"skill": "flutter-widget-fundamentals", "type": "obvious", "query": "My Flutter screen throws an unbounded height error with a ListView inside a Column."}
 {"skill": "flutter-widget-fundamentals", "type": "paraphrase", "query": "My screen does not redraw when I add an item to the list in my state."}
 {"skill": "flutter-widget-fundamentals", "type": "unrelated", "query": "Set up GNU Make targets for build_runner and analyze."}

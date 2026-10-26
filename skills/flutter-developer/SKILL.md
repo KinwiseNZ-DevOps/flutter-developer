@@ -28,7 +28,7 @@ Stance: the official Dart and Flutter guidance, the project's own conventions an
 | Request is about Dart or Flutter code, structure, planning or build automation | Route using the table below |
 | Request is about backend code, deployment platforms or profiling | Leave it alone, say another skill or repo owns it |
 | Request is a one-line fix with an obvious cause | Make it directly, then run the checks in step 4 |
-| Unsure which skill applies | Ask one short question, or start with `flutter-task-research` |
+| Unsure which skill applies | Ask one short question, or suggest the user starts `/flutter-developer:flutter-task-research` |
 
 Reason: routing a trivial fix through a full workflow wastes effort, and routing a design question straight to code produces changes nobody planned.
 
@@ -38,8 +38,8 @@ Reason: routing a trivial fix through a full workflow wastes effort, and routing
 |---|---|
 | Naming, formatting, doc comments, null handling, async, error handling, public API shape | [dart-code-standards](../dart-code-standards/SKILL.md) |
 | Layers, ViewModels, repositories, data flow, dependency injection, navigation, test strategy | [flutter-architecture](../flutter-architecture/SKILL.md) |
-| Understanding a codebase or comparing approaches before any change | [flutter-task-research](../flutter-task-research/SKILL.md) |
-| Finding and scoring technical debt, producing a remediation plan | [flutter-tech-debt-plan](../flutter-tech-debt-plan/SKILL.md) |
+| Understanding a codebase or comparing approaches before any change (the user starts it: `/flutter-developer:flutter-task-research`) | [flutter-task-research](../flutter-task-research/SKILL.md) |
+| Finding and scoring technical debt, producing a remediation plan (the user starts it: `/flutter-developer:flutter-tech-debt-plan`) | [flutter-tech-debt-plan](../flutter-tech-debt-plan/SKILL.md) |
 | Calling a Django REST API: models, auth, errors, pagination, CORS | [flutter-django-integration](../flutter-django-integration/SKILL.md) |
 | Widget and screen code: stateless or stateful, const, keys, layout constraint errors, forms, dispose, local state, reading Flutter errors | [flutter-widget-fundamentals](../flutter-widget-fundamentals/SKILL.md) |
 | Theming, design tokens, dark mode, contrast, tap targets, text scaling, dashboards and stat screens | [flutter-design-system](../flutter-design-system/SKILL.md) |
@@ -49,7 +49,7 @@ Reason: routing a trivial fix through a full workflow wastes effort, and routing
 ## Steps
 
 1. **Orient.** Read the project's own conventions first: lint rules (`analysis_options.yaml`), `pubspec.yaml`, folder layout, and the packages already used for state and navigation. Follow them over any generic advice.
-2. **Route.** Pick the skill from the table. For a change that needs understanding first, run `flutter-task-research`, then implement.
+2. **Route.** Pick the skill from the table. For a change that needs understanding first, suggest the user runs `/flutter-developer:flutter-task-research` (a skill only a person starts), then implement.
 3. **Change.** Make the smallest correct change. Match surrounding naming, comment density and idiom.
 4. **Verify.** Run, in this order, whatever the project supports: `dart format`, `dart analyze` (or `flutter analyze`), then `flutter test`. A skipped check is reported as skipped.
 
@@ -72,4 +72,4 @@ Start with the row of the routing table that matches the task.
 
 ## Always-on mode
 
-When the plugin is installed, a start-up hook adds [always-on-rules.md](references/always-on-rules.md) to every Claude Code session. The user can say "stop flutter mode" to pause it, or ask for the saved mode to be set to on, off or auto. The rules file is the single source of those rules; edit it, not a copy. The same hooks also run safety checks (risky commands, secrets, invented packages, licences, risky code patterns, suspicious pasted prompts, and a reminder when code changed but no checks ran). Each can be switched off in the features file described in the README, and none edits a file on its own.
+A start-up hook adds [always-on-rules.md](references/always-on-rules.md) to Claude Code sessions in matching projects. It is the single source of those rules, so edit it, not a copy. Say "stop flutter mode" to pause it. The README covers the saved mode and the safety checks.

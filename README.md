@@ -173,8 +173,8 @@ Privacy: `packageGuard` and `licenseGuard` send package names, and `linkGuard` s
 | `Where should this logic live?` | A layer decision with reasons | *flutter-architecture* |
 | `Why is my widget state wrong?` | The widget, key or constraint cause and a fix | *flutter-widget-fundamentals* |
 | `Review my Dart style` | Findings against Effective Dart | *dart-code-standards* |
-| `Research this before we change it` | One research note, one recommendation | *flutter-task-research* |
-| `Audit tech debt in lib` | A scored remediation plan | *flutter-tech-debt-plan* |
+| `/flutter-developer:flutter-task-research` | One research note, one recommendation (you start it by name) | *flutter-task-research* |
+| `/flutter-developer:flutter-tech-debt-plan` | A scored remediation plan (you start it by name) | *flutter-tech-debt-plan* |
 | `Connect this screen to the Django API` | Layered client, auth, error and pagination handling | *flutter-django-integration* |
 | `Apply our design tokens` | Theme and ThemeExtension wiring, accessibility checks | *flutter-design-system* |
 | `Add make targets for test and analyse` | A tidy Makefile | *make-automation* |

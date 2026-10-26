@@ -1,6 +1,0 @@
----
-max_turns: 3
-allowed_tools: [Read, Glob, Grep, Skill]
----
-
-Implement offline caching for the transactions list.

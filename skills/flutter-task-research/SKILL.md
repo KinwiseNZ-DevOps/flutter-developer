@@ -1,5 +1,6 @@
 ---
 name: flutter-task-research
+disable-model-invocation: true
 description: >
   Runs a research-only investigation before a task is planned: reads the
   codebase and authoritative sources, records verified findings in one research
