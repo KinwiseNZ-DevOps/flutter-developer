@@ -27,7 +27,7 @@ Logic a view may legitimately contain:
 | Practice | Priority | Mechanism |
 |---|---|---|
 | Unidirectional data flow | Strongly recommend | State flows from data layer to UI; UI events go back to the data layer to be processed. Updates have one path, so bugs have one place to hide |
-| `Command` objects for user-initiated events | Recommend | Prevent rendering errors and standardise how the UI sends events to the data layer. A Command exposes running, error and completed state; see [data-layer-patterns.md](data-layer-patterns.md) |
+| `Command` objects for user-initiated events | Recommend | Prevent rendering errors and standardise how the UI sends events to the data layer. A Command exposes running, error and completed state; see the data layer patterns reference |
 | Immutable data models | Strongly recommend | Changes require a new instance, so accidental edits in the UI layer cannot happen |
 | `freezed` or `built_value` to generate models | Recommend | Generate JSON serialisation, deep equality and copy methods. Cost: significant build time in apps with many models |
 | Separate API models and domain models | Conditional | For large apps. Adds verbosity but keeps wire-format quirks out of ViewModels and use cases |

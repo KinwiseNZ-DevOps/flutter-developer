@@ -15,6 +15,13 @@ description: >
 
 Keep the app building and behaving the same while the Flutter or Dart version, or a native build tool under it, changes. The project's current versions and the specific breaking-change guide for the gap being crossed decide the steps; do not guess at a change from its title alone.
 
+## Hard rules
+
+- Do not apply a change still marked "not yet released to stable". Mechanism: its final shape can still change before release. Reason: migrating early means migrating twice.
+- Do not enable a build flag (such as `android.builtInKotlin=true`) before every plugin the app depends on supports it. Mechanism: one unmigrated plugin breaks the whole build, and the failure looks unrelated to the flag. Reason: flipping a global flag is all-or-nothing.
+- Do not assume a breaking-change title fully describes the fix. Mechanism: titles are summaries; the linked guide has the exact code and file changes. Reason: guessing from a title produces plausible but wrong edits.
+- State the Flutter and Dart versions involved in every migration change. Mechanism: the same symptom can have different fixes on different versions. Reason: an undated fix cannot be checked against the project later.
+
 ## Gate
 
 | Situation | Action |
@@ -30,13 +37,6 @@ Keep the app building and behaving the same while the Flutter or Dart version, o
 2. **Find the guide.** Check the [Flutter breaking-changes index](https://docs.flutter.dev/release/breaking-changes) for every entry between the current and target version, not only the one named in the request; an SDK bump usually crosses several. [android-built-in-kotlin.md](references/android-built-in-kotlin.md) holds the distilled steps for the Android Gradle Plugin 9 Kotlin migration, the one most likely to break a build today.
 3. **Migrate in small steps.** Apply one guide at a time. Prefer the project's existing patterns over a rewrite. For a flag-gated change (for example `android.builtInKotlin`), confirm every dependency supports the new behaviour before turning the flag on everywhere.
 4. **Verify.** Build and run the app (`flutter build apk`, `flutter build ios`, or the platform that changed), then run `dart format`, `dart analyze` (or `flutter analyze`) and `flutter test`. State which checks ran and which were skipped.
-
-## Hard rules
-
-- Do not apply a change still marked "not yet released to stable". Mechanism: its final shape can still change before release. Reason: migrating early means migrating twice.
-- Do not enable a build flag (such as `android.builtInKotlin=true`) before every plugin the app depends on supports it. Mechanism: one unmigrated plugin breaks the whole build, and the failure looks unrelated to the flag. Reason: flipping a global flag is all-or-nothing.
-- Do not assume a breaking-change title fully describes the fix. Mechanism: titles are summaries; the linked guide has the exact code and file changes. Reason: guessing from a title produces plausible but wrong edits.
-- State the Flutter and Dart versions involved in every migration change. Mechanism: the same symptom can have different fixes on different versions. Reason: an undated fix cannot be checked against the project later.
 
 ## References
 

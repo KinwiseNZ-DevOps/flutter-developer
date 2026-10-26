@@ -11,7 +11,7 @@ Trust levels: rows marked (official) were checked against the Flutter API page n
 1. **Abstract.** Pull out the data the block shares between layouts (for example, one list of destinations for both a bar and a rail).
 2. **Measure.** Use `MediaQuery.sizeOf(context)` for whole-window decisions and `LayoutBuilder` inside reusable widgets (official).
 3. **Branch.** Switch at the breakpoint, 600 logical pixels from the Material window size classes (official).
-4. **Theme it.** Take colours, text styles and spacing from the theme and tokens, never literals. See [theming-and-accessibility.md](theming-and-accessibility.md).
+4. **Theme it.** Take colours, text styles and spacing from the theme and tokens, never literals. See the theming and accessibility reference.
 5. **Check it.** Semantics label, 48 px tap targets, dark mode, 200 percent text, and widths of 360 and 900 px.
 
 ## Application shells and layout
@@ -20,7 +20,7 @@ Trust levels: rows marked (official) were checked against the Flutter API page n
 |---|---|---|
 | Stacked, sidebar and multi-column shells | `Scaffold` with `NavigationBar` on narrow windows and `NavigationRail` on wide ones | The rail suits wide viewports and a small number of destinations, typically three to five (official). `NavigationDrawer` is the menu alternative for more destinations (official: listed in the Material catalogue). Starter: `AdaptiveShell` |
 | Page, card and section headings | A `PageHeading` widget: title, one line of context, actions | Actions sit on the right when wide and wrap below when narrow. Mark the title as a semantic header. Starter: `PageHeading` |
-| Containers, cards, list containers, media objects, dividers | `Card`, `ListTile`, `Divider` (official: all in the Material catalogue) | One radius family and hairline borders. See [dashboard-ui.md](dashboard-ui.md) |
+| Containers, cards, list containers, media objects, dividers | `Card`, `ListTile`, `Divider` (official: all in the Material catalogue) | One radius family and hairline borders. See the dashboard UI reference |
 | Grid lists | `GridView.builder` with a max-cross-axis-extent delegate (general) | Lets the column count follow the width without a breakpoint |
 
 ## Data display and lists

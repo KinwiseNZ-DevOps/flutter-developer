@@ -14,6 +14,25 @@ description: >
 
 Stance: the backend's real behaviour is the contract, and the client must follow it. Frozen: the service and repository layering, the Result return type, one place for token handling, one place for error parsing. Flexible: hand-written or generated client, and the exact retry policy.
 
+## Hard rules
+
+- Never parse money as `double`. Mechanism: DRF sends decimals as strings by default because binary floating point cannot hold most decimal fractions exactly, so a `double` parse silently loses precision.
+- Never call the API from `build`. Mechanism: `build` runs on every rebuild, so each rebuild fires another request.
+- Throw or return an error on a non-success status; never return null. Mechanism: null leaves a loading state showing forever.
+- Never hard-code tokens or base URLs as literals. Mechanism: literals ship inside the app and cannot differ per environment.
+- Send auth only over HTTPS. Mechanism: bearer and token credentials are readable in transit otherwise.
+- Check the backend's actual auth scheme before writing the header. Mechanism: Simple JWT uses `Bearer`, DRF's built-in token auth uses `Token`.
+- Do not retry a 400, 401-after-refresh, or 403, and treat any failed refresh (400 or 401) as sign-out. Mechanism: the same request cannot succeed without a changed input or credential.
+- Retry only reads, only on network, timeout and 5xx, with exponential backoff, jitter and a total budget, and never inside the 401 recovery path. Mechanism: fixed-delay nested retries multiply attempts and stack load on a struggling server.
+- Serialise concurrent token refreshes, and persist the new refresh token before retrying when rotation is on. Mechanism: with rotation and blacklisting, a second refresh with a spent token fails and signs the user out.
+- Do not assume an `Idempotency-Key` header is honoured. Mechanism: many backends get replay safety from database constraints instead, so a key the server ignores leaves duplicate writes possible.
+- Partition any cache or write queue by user and tenant, and clear it on sign-out. Mechanism: a shared store can show one user's data to another.
+- Use an isolate for JSON work only after a profile shows the main thread blocked. Mechanism: isolates add copying cost and complexity, and small pages rarely need them.
+- Do not enable broad CORS on the server to make a web build work. Mechanism: allowing all origins lets any site call the API; list the exact web origin instead. Native apps are not subject to browser CORS.
+- Mark inference as inference. The reference separates official facts from advice.
+- Never open a bank or payment-provider page in an embedded `WebView`. Mechanism: banks block framed pages, and a `WebView` the app controls defeats the point of the customer authenticating directly with their bank rather than through the app; use the platform's in-app browser (Custom Tabs / `SFSafariViewController`) instead.
+- Never treat a payment return link as proof of an outcome; re-fetch status from the backend on both the link and on app resume. Mechanism: the link can be forged (any app can claim the same custom scheme), can carry a stale or unrelated `cid`, and frequently never arrives at all if the customer backgrounds or kills the app mid-flow.
+
 ## Gate
 
 | Situation | Action |
@@ -38,25 +57,6 @@ Reason: a client built on guessed server behaviour works until the first real re
 5. **Parse errors in one place.** Turn 400 field errors, `non_field_errors`, 401, 403, 429 and network failures into one sealed error type that the ViewModel can show.
 6. **Page lists properly.** Follow the `next` link, keep pagination state in the repository, and block overlapping loads.
 7. **Verify.** Unit test service parsing against saved real responses, repositories against fake services, and error mapping for each documented shape. Run `dart analyze` and `flutter test`.
-
-## Hard rules
-
-- Never parse money as `double`. Mechanism: DRF sends decimals as strings by default because binary floating point cannot hold most decimal fractions exactly, so a `double` parse silently loses precision.
-- Never call the API from `build`. Mechanism: `build` runs on every rebuild, so each rebuild fires another request.
-- Throw or return an error on a non-success status; never return null. Mechanism: null leaves a loading state showing forever.
-- Never hard-code tokens or base URLs as literals. Mechanism: literals ship inside the app and cannot differ per environment.
-- Send auth only over HTTPS. Mechanism: bearer and token credentials are readable in transit otherwise.
-- Check the backend's actual auth scheme before writing the header. Mechanism: Simple JWT uses `Bearer`, DRF's built-in token auth uses `Token`.
-- Do not retry a 400, 401-after-refresh, or 403, and treat any failed refresh (400 or 401) as sign-out. Mechanism: the same request cannot succeed without a changed input or credential.
-- Retry only reads, only on network, timeout and 5xx, with exponential backoff, jitter and a total budget, and never inside the 401 recovery path. Mechanism: fixed-delay nested retries multiply attempts and stack load on a struggling server.
-- Serialise concurrent token refreshes, and persist the new refresh token before retrying when rotation is on. Mechanism: with rotation and blacklisting, a second refresh with a spent token fails and signs the user out.
-- Do not assume an `Idempotency-Key` header is honoured. Mechanism: many backends get replay safety from database constraints instead, so a key the server ignores leaves duplicate writes possible.
-- Partition any cache or write queue by user and tenant, and clear it on sign-out. Mechanism: a shared store can show one user's data to another.
-- Use an isolate for JSON work only after a profile shows the main thread blocked. Mechanism: isolates add copying cost and complexity, and small pages rarely need them.
-- Do not enable broad CORS on the server to make a web build work. Mechanism: allowing all origins lets any site call the API; list the exact web origin instead. Native apps are not subject to browser CORS.
-- Mark inference as inference. The reference separates official facts from advice.
-- Never open a bank or payment-provider page in an embedded `WebView`. Mechanism: banks block framed pages, and a `WebView` the app controls defeats the point of the customer authenticating directly with their bank rather than through the app; use the platform's in-app browser (Custom Tabs / `SFSafariViewController`) instead.
-- Never treat a payment return link as proof of an outcome; re-fetch status from the backend on both the link and on app resume. Mechanism: the link can be forged (any app can claim the same custom scheme), can carry a stale or unrelated `cid`, and frequently never arrives at all if the customer backgrounds or kills the app mid-flow.
 
 ## Companion plugins (use when installed)
 

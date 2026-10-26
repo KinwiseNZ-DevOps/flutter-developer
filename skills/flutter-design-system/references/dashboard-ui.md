@@ -15,7 +15,7 @@ Trust levels: the starting scale and the "ethic" below are team-written practice
 
 ## 2. A starting scale
 
-Suggested values to adapt, not rules. Keep them in the theme layer (a `ThemeExtension` or a small tokens class) so screens never use raw numbers. See [theming-and-accessibility.md](theming-and-accessibility.md).
+Suggested values to adapt, not rules. Keep them in the theme layer (a `ThemeExtension` or a small tokens class) so screens never use raw numbers. See the theming and accessibility reference.
 
 | Thing | Starting value | Where it lives |
 |---|---|---|

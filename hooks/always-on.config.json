@@ -3,7 +3,7 @@
   "name": "Flutter Developer",
   "phrase": "flutter",
   "rules": "skills/flutter-developer/references/always-on-rules.md",
-  "defaultMode": "on",
+  "defaultMode": "auto",
   "autoDetect": true,
   "autoMarkers": [
     {

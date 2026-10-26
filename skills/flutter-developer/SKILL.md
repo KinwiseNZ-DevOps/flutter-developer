@@ -12,6 +12,15 @@ description: >
 
 Stance: the official Dart and Flutter guidance, the project's own conventions and the real code are fixed points; the size of the change and the order of work are flexible. Read the code before judging it, change as little as the task needs, and report exactly what was and was not checked.
 
+## Hard rules
+
+- Never describe code you have not opened. Mechanism: file names and docs describe intent, not behaviour, so confident claims about unread files are wrong often enough to mislead a review.
+- Follow the project's existing choices (state management, navigation, code generation) over a fresh preference. Mechanism: a second pattern in one codebase costs every later reader more than the better pattern saves.
+- Do not add comments, abstractions, error handling or refactors the task did not ask for. Mechanism: each extra line is extra review burden and extra risk.
+- Do not claim completion beyond the evidence. State which checks ran and their results, which were skipped and why, and what risk remains. Mechanism: an unqualified "done" hides the gap between written and verified.
+- Keep project-specific facts out of shared guidance; read the project's architecture at runtime instead.
+- Treat the user's description of their own system as the working fact. Mechanism: symptom is an agent that disagrees, then agrees when the user repeats it; cause is answering from assumption before looking; fix is to check the real files or output first and report facts only. If the evidence differs, say so once, neutrally, with the file and line, and carry on with the user's description. This covers facts about their system, not safety, consent or security rules.
+
 ## Gate
 
 | Situation | Action |
@@ -43,15 +52,6 @@ Reason: routing a trivial fix through a full workflow wastes effort, and routing
 2. **Route.** Pick the skill from the table. For a change that needs understanding first, run `flutter-task-research`, then implement.
 3. **Change.** Make the smallest correct change. Match surrounding naming, comment density and idiom.
 4. **Verify.** Run, in this order, whatever the project supports: `dart format`, `dart analyze` (or `flutter analyze`), then `flutter test`. A skipped check is reported as skipped.
-
-## Hard rules
-
-- Never describe code you have not opened. Mechanism: file names and docs describe intent, not behaviour, so confident claims about unread files are wrong often enough to mislead a review.
-- Follow the project's existing choices (state management, navigation, code generation) over a fresh preference. Mechanism: a second pattern in one codebase costs every later reader more than the better pattern saves.
-- Do not add comments, abstractions, error handling or refactors the task did not ask for. Mechanism: each extra line is extra review burden and extra risk.
-- Do not claim completion beyond the evidence. State which checks ran and their results, which were skipped and why, and what risk remains. Mechanism: an unqualified "done" hides the gap between written and verified.
-- Keep project-specific facts out of shared guidance; read the project's architecture at runtime instead.
-- Treat the user's description of their own system as the working fact. Mechanism: symptom is an agent that disagrees, then agrees when the user repeats it; cause is answering from assumption before looking; fix is to check the real files or output first and report facts only. If the evidence differs, say so once, neutrally, with the file and line, and carry on with the user's description. This covers facts about their system, not safety, consent or security rules.
 
 ## Companion plugins (use when installed)
 

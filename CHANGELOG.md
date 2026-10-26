@@ -4,6 +4,11 @@ All notable changes to this plugin are listed here, newest first. To cut a relea
 
 ## [Unreleased]
 
+- Added triggering tests (`evals/triggers.jsonl`): every skill has an obvious, a paraphrase and an unrelated query, checked by the validator and exported as `tool_used` graders.
+- The always-on rules now default to `auto`, so they load only in Flutter projects (a `pubspec.yaml` that mentions Flutter).
+- Moved Hard rules to the top of every skill, above the gate.
+- Removed links between reference files so every reference is one level deep from its SKILL.md.
+
 ## [0.7.1] - 2026-10-23
 
 - Added the rule to trust the user's description of their own system: check the real files, report facts only, and never argue then concede. It is in the always-on rules, the router hard rules, AGENTS.md and the agent profiles.

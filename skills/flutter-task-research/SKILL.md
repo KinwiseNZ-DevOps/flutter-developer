@@ -14,6 +14,14 @@ description: >
 
 Stance: this skill reads and records; it does not change source code or configuration. Frozen: only verified findings go in the note, and only the research note is written. Flexible: how many sources and searches the question needs.
 
+## Hard rules
+
+- Write only the research note. Mechanism: research that also edits code stops being a neutral input to planning.
+- Record only what you verified by reading or running something. Mechanism: a plan built on an assumption fails later and is hard to trace back.
+- Keep one living note and prune it. Mechanism: stale alternatives left in a note get implemented by mistake.
+- Keep chat updates short and point to the note rather than repeating it. Mechanism: duplicated text in two places drifts.
+- Separate fact from inference and say which is which.
+
 ## Gate
 
 | Situation | Action |
@@ -33,14 +41,6 @@ Reason: a full research pass on a trivial question wastes effort, while an unres
 4. **Compare.** For each viable approach note what it is, where it fits, its limits and risks, and its fit with project conventions. Present them briefly and ask which fits the objective.
 5. **Converge.** Once an approach is chosen, delete the others from the note, merge duplicates, and remove anything outdated.
 6. **Hand off.** Give the note's path, the critical discoveries, the one recommendation, and what implementation should do first.
-
-## Hard rules
-
-- Write only the research note. Mechanism: research that also edits code stops being a neutral input to planning.
-- Record only what you verified by reading or running something. Mechanism: a plan built on an assumption fails later and is hard to trace back.
-- Keep one living note and prune it. Mechanism: stale alternatives left in a note get implemented by mistake.
-- Keep chat updates short and point to the note rather than repeating it. Mechanism: duplicated text in two places drifts.
-- Separate fact from inference and say which is which.
 
 ## References
 

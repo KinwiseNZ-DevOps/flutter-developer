@@ -17,6 +17,13 @@ description: >
 
 Stance: the Flutter framework rules and the project's own widgets, state tool and router are fixed points; how many widgets a screen is split into is flexible. Reach for the simplest widget that works. Frozen: dispose what you create, never use a `BuildContext` unsafely after an `await`, and follow the project's state and navigation packages. Flexible: file layout of small widgets and whether a form is split into parts.
 
+## Hard rules
+
+- Never mutate a list or map held in state and expect the screen to update; build a new one and set it through the state tool. Mechanism: the framework sees a change only when the reference or notification changes.
+- Never create a controller inside `build`. Mechanism: `build` runs often, so each run leaks a new controller and loses the typed text.
+- Never use an index as a key for items that can move. Mechanism: the index stays put while the item moves, so the state sticks to the wrong item.
+- Never silence a constraint error with a guessed size. Mechanism: it hides the unbounded parent and breaks on another screen size.
+
 ## Gate
 
 | Situation | Action |
@@ -56,13 +63,6 @@ Reason: a second pattern in one codebase costs every later reader more than a be
 
 Input: "My list of checkbox rows shows the wrong ticks after I delete the first row."
 Output: the rows are stateful and have no keys, so Flutter reuses the old state by position. Give each row a `ValueKey` built from the item id, and keep the ticked value in the list data rather than in each row.
-
-## Hard rules
-
-- Never mutate a list or map held in state and expect the screen to update; build a new one and set it through the state tool. Mechanism: the framework sees a change only when the reference or notification changes.
-- Never create a controller inside `build`. Mechanism: `build` runs often, so each run leaks a new controller and loses the typed text.
-- Never use an index as a key for items that can move. Mechanism: the index stays put while the item moves, so the state sticks to the wrong item.
-- Never silence a constraint error with a guessed size. Mechanism: it hides the unbounded parent and breaks on another screen size.
 
 ## References
 

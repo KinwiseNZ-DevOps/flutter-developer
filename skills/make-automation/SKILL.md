@@ -13,6 +13,17 @@ description: >
 
 Stance: a Makefile is a small, readable index of project commands. Frozen: tabs in recipes, `.PHONY` for non-file targets, a clear default goal. Flexible: how much to parameterise.
 
+## Hard rules
+
+- Start every recipe line with a tab. Mechanism: spaces cause a "missing separator" error.
+- Declare non-file targets with `.PHONY`. Mechanism: a file named `clean` with no prerequisites is always considered up to date, so the recipe would never run.
+- Remember each recipe line runs in its own shell. Mechanism: `cd` on one line does not carry to the next, so join dependent commands with `&&` and a backslash, or list `.ONESHELL` to send a whole recipe to one shell.
+- Use `-` to ignore failures only where failure is expected, such as `rm -f` in `clean`. Mechanism: ignoring errors elsewhere hides real breakage.
+- Add `.DELETE_ON_ERROR`. Mechanism: make then deletes a target that changed when its recipe fails, so a half-written file cannot look up to date on the next run.
+- Use `$(wildcard ...)`, not `$(shell ls ...)`. Mechanism: `wildcard` is built in and spawns no process.
+- Move long shell logic into a script file. Mechanism: Makefile quoting and expansion make complex recipes fragile.
+- Do not use recursive make unless nothing else works. Mechanism: each sub-make sees only its own directory, so dependencies across directories can be missed (the GNU Make manual covers recursive use in its own section).
+
 ## Gate
 
 | Situation | Action |
@@ -31,17 +42,6 @@ Reason: a Makefile that duplicates another runner creates two sources of truth.
 3. **Verify.** Run `make -n target` to see commands without running them, then run the target. Confirm `clean` is idempotent.
 
 Rule detail and examples: [gnu-make-rules.md](references/gnu-make-rules.md).
-
-## Hard rules
-
-- Start every recipe line with a tab. Mechanism: spaces cause a "missing separator" error.
-- Declare non-file targets with `.PHONY`. Mechanism: a file named `clean` with no prerequisites is always considered up to date, so the recipe would never run.
-- Remember each recipe line runs in its own shell. Mechanism: `cd` on one line does not carry to the next, so join dependent commands with `&&` and a backslash, or list `.ONESHELL` to send a whole recipe to one shell.
-- Use `-` to ignore failures only where failure is expected, such as `rm -f` in `clean`. Mechanism: ignoring errors elsewhere hides real breakage.
-- Add `.DELETE_ON_ERROR`. Mechanism: make then deletes a target that changed when its recipe fails, so a half-written file cannot look up to date on the next run.
-- Use `$(wildcard ...)`, not `$(shell ls ...)`. Mechanism: `wildcard` is built in and spawns no process.
-- Move long shell logic into a script file. Mechanism: Makefile quoting and expansion make complex recipes fragile.
-- Do not use recursive make unless nothing else works. Mechanism: each sub-make sees only its own directory, so dependencies across directories can be missed (the GNU Make manual covers recursive use in its own section).
 
 ## References
 

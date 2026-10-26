@@ -1,0 +1,30 @@
+{"skill": "dart-code-standards", "type": "obvious", "query": "Review this Dart class for naming and Effective Dart style problems."}
+{"skill": "dart-code-standards", "type": "paraphrase", "query": "My teammates name things inconsistently and import files in a random order. What rules should we follow for Dart files?"}
+{"skill": "dart-code-standards", "type": "unrelated", "query": "Which state management approach should we use for our Flutter app?"}
+{"skill": "flutter-architecture", "type": "obvious", "query": "Structure our Flutter app with a UI layer, repositories and view models."}
+{"skill": "flutter-architecture", "type": "paraphrase", "query": "Our widgets are full of business logic and are hard to test. Where should that code live?"}
+{"skill": "flutter-architecture", "type": "unrelated", "query": "Fix the lint error about a missing doc comment on this public class."}
+{"skill": "flutter-design-system", "type": "obvious", "query": "Add dark mode and map our design tokens to ThemeData and a ThemeExtension."}
+{"skill": "flutter-design-system", "type": "paraphrase", "query": "Colours and font sizes are hard-coded all over the screens. How do we make them consistent?"}
+{"skill": "flutter-design-system", "type": "unrelated", "query": "Write a repository that calls our Django endpoint and maps the JSON."}
+{"skill": "flutter-developer", "type": "obvious", "query": "Add a new settings screen to our Flutter app."}
+{"skill": "flutter-developer", "type": "paraphrase", "query": "I want to change how the mobile app handles something, but I am not sure where to start in the Dart code."}
+{"skill": "flutter-developer", "type": "unrelated", "query": "Add a new Django model and migration for budgets."}
+{"skill": "flutter-django-integration", "type": "obvious", "query": "Call our Django REST API from Flutter with JWT login and token storage."}
+{"skill": "flutter-django-integration", "type": "paraphrase", "query": "The mobile app shows a blank screen when the server rejects a form. How do we show the server's field errors?"}
+{"skill": "flutter-django-integration", "type": "unrelated", "query": "Write the Django serializer for the budgets endpoint."}
+{"skill": "flutter-migration", "type": "obvious", "query": "Upgrade our app to the latest Flutter stable and fix the deprecation warnings."}
+{"skill": "flutter-migration", "type": "paraphrase", "query": "After we bumped Gradle our Android build fails with a Kotlin error."}
+{"skill": "flutter-migration", "type": "unrelated", "query": "Add a dark theme to the app."}
+{"skill": "flutter-task-research", "type": "obvious", "query": "Research how we could add offline support to the app before we plan it. Do not change any code."}
+{"skill": "flutter-task-research", "type": "paraphrase", "query": "Compare a few ways of doing push notifications and tell me which one you would recommend, without writing code."}
+{"skill": "flutter-task-research", "type": "unrelated", "query": "Implement offline caching for the transactions list."}
+{"skill": "flutter-tech-debt-plan", "type": "obvious", "query": "Audit our Flutter codebase for tech debt and give me a scored plan."}
+{"skill": "flutter-tech-debt-plan", "type": "paraphrase", "query": "We have been moving fast. Find the messy parts, missing tests and stale docs and rank what to clean up first, without touching code."}
+{"skill": "flutter-tech-debt-plan", "type": "unrelated", "query": "Fix the failing test in the budgets view model."}
+{"skill": "flutter-widget-fundamentals", "type": "obvious", "query": "My Flutter screen throws an unbounded height error with a ListView inside a Column."}
+{"skill": "flutter-widget-fundamentals", "type": "paraphrase", "query": "My screen does not redraw when I add an item to the list in my state."}
+{"skill": "flutter-widget-fundamentals", "type": "unrelated", "query": "Set up GNU Make targets for build_runner and analyze."}
+{"skill": "make-automation", "type": "obvious", "query": "Write a Makefile with targets for analyze, test and code generation for our Flutter project."}
+{"skill": "make-automation", "type": "paraphrase", "query": "I keep retyping the same long commands to build and test the app. How can I wrap them in one short command?"}
+{"skill": "make-automation", "type": "unrelated", "query": "Write a GitHub Actions workflow that runs the tests on every pull request."}

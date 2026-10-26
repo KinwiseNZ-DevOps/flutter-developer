@@ -15,6 +15,28 @@ description: >
 
 Stance: design values live in the theme, once. Frozen: no literal colours, font sizes or radii in feature widgets, and accessibility minimums. Flexible: which tokens to model and whether to generate token code.
 
+## Hard rules
+
+- No hard-coded colours, font sizes or radii in feature widgets. Mechanism: a value written in a widget cannot follow a rebrand, dark mode or the user's text settings.
+- Pair every surface colour with its `on` role for text and icons. Mechanism: the pairing is what guarantees contrast when the scheme changes.
+- Always supply a dark theme, and check contrast in both. Mechanism: a scheme that passes in light mode can fail in dark mode.
+- Implement both `copyWith` and `lerp` on a `ThemeExtension`. Mechanism: without `lerp`, values jump instead of animating when the theme switches.
+- Name tokens for meaning (`danger`), not appearance (`redDark`). Mechanism: appearance names break when the palette changes.
+- Prefer `Theme.of(context).copyWith(...)` to a fresh `ThemeData` for local overrides. Mechanism: a fresh theme ignores the app theme and breaks dark mode in that subtree.
+- Build `ThemeData` and `ThemeExtension` instances once, outside `build`. Mechanism: creating them inside `build` allocates new objects on every rebuild; hand rebuild-cost questions to the performance companion.
+- Provide text-on-colour "ink" variants for accent colours used as text, and cover them with a contrast test. Mechanism: a fill colour that looks right as a background often fails 4.5:1 as text.
+- Do not copy a commercial UI kit's markup or code into the repository. Build each block from Flutter's own widgets and the project's theme. Mechanism: kit code is licensed, and a copy in a public or shared repository can breach the licence.
+- Check what the project already has before adding a block, and extend that. Mechanism: a second empty-state or card widget beside an existing one splits the design system in two.
+- Use `PaginatedDataTable` or a lazy list for large tables, not `DataTable`. Mechanism: `DataTable` measures every row twice and is not lazy, so large data makes it slow.
+- Wrap a labelled group of separate controls (such as breadcrumbs) with `explicitChildNodes: true`. Mechanism: without it a screen reader merges the items into one node and cannot announce the current page.
+- Never signal status with colour alone. Pair it with an arrow, a sign or a word, and give it a spoken label. Mechanism: WCAG 1.4.1 requires another cue because some users cannot tell the colours apart, and a screen reader cannot read a colour.
+- Use tabular figures for numbers that line up, and check the font supports them. Mechanism: proportional digits make columns of figures jitter, and a font without tabular digits ignores the setting.
+- Choose the layout from the window width (`MediaQuery.sizeOf`) for the app shell and from `LayoutBuilder` inside reusable widgets, not from device type. Mechanism: a small window on a large screen is misread as a phone, and a widget that reads the whole window cannot be reused in a narrow slot.
+- Send every displayed number through one formatter, never a raw `toString()`. Mechanism: locale, currency and rounding rules differ, and scattered formatting drifts.
+- Give empty, loading and error states a design, and check the screen at 360 and 900 px wide, in light and dark, and at 200 percent text. Mechanism: most of the states a screen is in are not the happy path.
+- Do not use fixed heights on text containers. Mechanism: large text settings overflow them.
+- Do not turn off Material 3 in new code. Mechanism: it is the framework default from Flutter 3.16 onward (verify against the Flutter version in use), so opting out leaves a one-off look to maintain.
+
 ## Gate
 
 | Situation | Action |
@@ -40,28 +62,6 @@ Reason: every extra token system is one more place for values to drift from the 
 6. **Dashboards.** Put the page heading first, then a stat strip, then cards. Decide the layout from the window width, give empty, loading and error states a design, and run the checklist in [dashboard-ui.md](references/dashboard-ui.md).
 
 Full detail: [theming-and-accessibility.md](references/theming-and-accessibility.md).
-
-## Hard rules
-
-- No hard-coded colours, font sizes or radii in feature widgets. Mechanism: a value written in a widget cannot follow a rebrand, dark mode or the user's text settings.
-- Pair every surface colour with its `on` role for text and icons. Mechanism: the pairing is what guarantees contrast when the scheme changes.
-- Always supply a dark theme, and check contrast in both. Mechanism: a scheme that passes in light mode can fail in dark mode.
-- Implement both `copyWith` and `lerp` on a `ThemeExtension`. Mechanism: without `lerp`, values jump instead of animating when the theme switches.
-- Name tokens for meaning (`danger`), not appearance (`redDark`). Mechanism: appearance names break when the palette changes.
-- Prefer `Theme.of(context).copyWith(...)` to a fresh `ThemeData` for local overrides. Mechanism: a fresh theme ignores the app theme and breaks dark mode in that subtree.
-- Build `ThemeData` and `ThemeExtension` instances once, outside `build`. Mechanism: creating them inside `build` allocates new objects on every rebuild; hand rebuild-cost questions to the performance companion.
-- Provide text-on-colour "ink" variants for accent colours used as text, and cover them with a contrast test. Mechanism: a fill colour that looks right as a background often fails 4.5:1 as text.
-- Do not copy a commercial UI kit's markup or code into the repository. Build each block from Flutter's own widgets and the project's theme. Mechanism: kit code is licensed, and a copy in a public or shared repository can breach the licence.
-- Check what the project already has before adding a block, and extend that. Mechanism: a second empty-state or card widget beside an existing one splits the design system in two.
-- Use `PaginatedDataTable` or a lazy list for large tables, not `DataTable`. Mechanism: `DataTable` measures every row twice and is not lazy, so large data makes it slow.
-- Wrap a labelled group of separate controls (such as breadcrumbs) with `explicitChildNodes: true`. Mechanism: without it a screen reader merges the items into one node and cannot announce the current page.
-- Never signal status with colour alone. Pair it with an arrow, a sign or a word, and give it a spoken label. Mechanism: WCAG 1.4.1 requires another cue because some users cannot tell the colours apart, and a screen reader cannot read a colour.
-- Use tabular figures for numbers that line up, and check the font supports them. Mechanism: proportional digits make columns of figures jitter, and a font without tabular digits ignores the setting.
-- Choose the layout from the window width (`MediaQuery.sizeOf`) for the app shell and from `LayoutBuilder` inside reusable widgets, not from device type. Mechanism: a small window on a large screen is misread as a phone, and a widget that reads the whole window cannot be reused in a narrow slot.
-- Send every displayed number through one formatter, never a raw `toString()`. Mechanism: locale, currency and rounding rules differ, and scattered formatting drifts.
-- Give empty, loading and error states a design, and check the screen at 360 and 900 px wide, in light and dark, and at 200 percent text. Mechanism: most of the states a screen is in are not the happy path.
-- Do not use fixed heights on text containers. Mechanism: large text settings overflow them.
-- Do not turn off Material 3 in new code. Mechanism: it is the framework default from Flutter 3.16 onward (verify against the Flutter version in use), so opting out leaves a one-off look to maintain.
 
 ## References
 
