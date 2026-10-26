@@ -1,11 +1,11 @@
 ---
 name: flutter-architecture
 description: >
-  Applies the Flutter team's app architecture recommendations: UI and data
-  layers, MVVM, repositories, unidirectional data flow, immutable models,
-  dependency injection, navigation, naming and testing with fakes. Use when
-  structuring a Flutter app or feature, deciding where logic belongs, reviewing
-  widgets that hold logic, or planning tests per layer. Do not use for Dart
+  Use when structuring a Flutter app or feature, deciding where logic belongs,
+  reviewing widgets that hold logic, or planning tests per layer. Applies the
+  Flutter team's app architecture recommendations: UI and data layers, MVVM,
+  repositories, unidirectional data flow, immutable models, dependency
+  injection, navigation, naming and testing with fakes. Do not use for Dart
   naming and style (dart-code-standards) or for profiling and rebuild tuning.
 ---
 

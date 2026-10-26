@@ -1,11 +1,11 @@
 ---
 name: make-automation
 description: >
-  Writes and reviews GNU Make Makefiles that wrap repeatable project commands
-  such as code generation, analysis, tests and builds, covering structure,
-  variables, phony targets, recipes, includes and portability. Use when adding
-  or fixing a Makefile, a make target, or a task runner for a Flutter or Dart
-  project. Do not use for Dart code rules (dart-code-standards) or for CI
+  Use when adding or fixing a Makefile, a make target, or a task runner for a
+  Flutter or Dart project. Writes and reviews GNU Make Makefiles that wrap
+  repeatable project commands such as code generation, analysis, tests and
+  builds, covering structure, variables, phony targets, recipes, includes and
+  portability. Do not use for Dart code rules (dart-code-standards) or for CI
   workflow files.
 ---
 

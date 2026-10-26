@@ -1,14 +1,14 @@
 ---
 name: flutter-design-system
 description: >
-  Applies a design system in Flutter through the theme layer: ThemeData,
-  ColorScheme, TextTheme, ThemeExtension design tokens, light and dark themes,
-  shared themed widgets, accessibility checks and dashboard screens (stat
-  strips, cards, adaptive layout). Use when theming an app, mapping a design
-  team's tokens to Flutter, removing hard-coded colours or sizes, adding dark
-  mode, checking contrast, tap targets and text scaling, or building a
-  dashboard or data-heavy screen.
-  Do not use for app structure (flutter-architecture) or for API integration.
+  Use when theming an app, mapping a design team's tokens to Flutter, removing
+  hard-coded colours or sizes, adding dark mode, checking contrast, tap targets
+  and text scaling, or building a dashboard or data-heavy screen. Applies a
+  design system in Flutter through the theme layer: ThemeData, ColorScheme,
+  TextTheme, ThemeExtension design tokens, light and dark themes, shared themed
+  widgets, accessibility checks and dashboard screens (stat strips, cards,
+  adaptive layout). Do not use for app structure (flutter-architecture) or for
+  API integration.
 ---
 
 # Flutter Design System

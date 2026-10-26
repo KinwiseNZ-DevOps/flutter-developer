@@ -2,11 +2,11 @@
 name: flutter-tech-debt-plan
 disable-model-invocation: true
 description: >
-  Produces a scored technical debt remediation plan for Flutter and Dart code,
-  tests and documentation, with a summary table and a detailed plan per item,
-  without changing code. Use when asked to audit tech debt, find code smells,
-  assess missing tests or outdated docs, or plan a clean-up. Do not use for
-  fixing the debt (flutter-developer) or for open-ended investigation
+  Use when asked to audit tech debt, find code smells, assess missing tests or
+  outdated docs, or plan a clean-up. Produces a scored technical debt
+  remediation plan for Flutter and Dart code, tests and documentation, with a
+  summary table and a detailed plan per item, without changing code. Do not use
+  for fixing the debt (flutter-developer) or for open-ended investigation
   (flutter-task-research).
 ---
 

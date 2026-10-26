@@ -1,11 +1,11 @@
 ---
 name: dart-code-standards
 description: >
-  Applies the official Effective Dart rules to written Dart code: identifier
-  naming, import ordering, formatting, doc comments, null safety usage,
-  collections, async, error handling, types, parameters, equality and public API
-  design. Use when writing, reviewing or cleaning up Dart code, naming things, or
-  designing a library API. Do not use for app structure or state management
+  Use when writing, reviewing or cleaning up Dart code, naming things, or
+  designing a library API. Applies the official Effective Dart rules to written
+  Dart code: identifier naming, import ordering, formatting, doc comments, null
+  safety usage, collections, async, error handling, types, parameters, equality
+  and public API design. Do not use for app structure or state management
   (flutter-architecture) or for performance work.
 ---
 

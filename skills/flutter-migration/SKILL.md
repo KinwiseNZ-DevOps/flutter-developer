@@ -1,14 +1,14 @@
 ---
 name: flutter-migration
 description: >
-  Plans and performs Flutter and Dart SDK upgrades and breaking-change
-  migrations: deprecated API removals, Android Gradle Plugin and Kotlin
-  build changes, and other changes listed on the Flutter breaking-changes
-  page. Use when upgrading the Flutter or Dart version, when a build fails
-  after an SDK or Android Gradle Plugin upgrade, or when fixing a
-  deprecation warning tied to a specific Flutter version. Do not use for
-  app-level architecture decisions (flutter-architecture) or for routine
-  feature work with no version or build change involved.
+  Use when upgrading the Flutter or Dart version, when a build fails after an
+  SDK or Android Gradle Plugin upgrade, or when fixing a deprecation warning
+  tied to a specific Flutter version. Plans and performs Flutter and Dart SDK
+  upgrades and breaking-change migrations: deprecated API removals, Android
+  Gradle Plugin and Kotlin build changes, and other changes listed on the
+  Flutter breaking-changes page. Do not use for app-level architecture decisions
+  (flutter-architecture) or for routine feature work with no version or build
+  change involved.
 ---
 
 # Flutter Migration

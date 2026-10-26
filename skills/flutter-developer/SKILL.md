@@ -1,11 +1,12 @@
 ---
 name: flutter-developer
 description: >
-  Router and shared guardrails for Dart and Flutter development work, including
-  Django API integration and design systems: picks the right specialist skill and enforces verify-before-claiming, smallest-change
-  and honest close-out rules. Use when a task touches Dart or Flutter code, when
-  starting any Flutter change, or when it is unclear which skill applies. Do not
-  use for backend work, or for performance profiling and optimisation.
+  Use when a task touches Dart or Flutter code, when starting any Flutter
+  change, or when it is unclear which skill applies. Router and shared
+  guardrails for Dart and Flutter development work, including Django API
+  integration and design systems: picks the right specialist skill and enforces
+  verify-before-claiming, smallest-change and honest close-out rules. Do not use
+  for backend work, or for performance profiling and optimisation.
 ---
 
 # Flutter Developer

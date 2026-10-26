@@ -1,12 +1,12 @@
 ---
 name: flutter-django-integration
 description: >
-  Guides the Flutter side of integrating with a Django REST Framework backend:
-  service and repository layering, OpenAPI contract and client generation, JSON
-  model mapping, JWT authentication and token storage, error and validation
-  mapping, pagination, environments and web CORS. Use when a Flutter app calls a
-  Django API, when adding or changing an endpoint client, auth flow, error
-  handling or list loading, or when the app and API disagree. Do not use for
+  Use when a Flutter app calls a Django API, when adding or changing an endpoint
+  client, auth flow, error handling or list loading, or when the app and API
+  disagree. Guides the Flutter side of integrating with a Django REST Framework
+  backend: service and repository layering, OpenAPI contract and client
+  generation, JSON model mapping, JWT authentication and token storage, error
+  and validation mapping, pagination, environments and web CORS. Do not use for
   writing the Django server code or for UI theming.
 ---
 

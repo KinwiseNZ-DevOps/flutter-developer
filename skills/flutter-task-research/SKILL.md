@@ -2,13 +2,12 @@
 name: flutter-task-research
 disable-model-invocation: true
 description: >
-  Runs a research-only investigation before a task is planned: reads the
-  codebase and authoritative sources, records verified findings in one research
-  note, weighs alternatives and converges on a single recommended approach
-  without editing code. Use when asked to research, investigate, analyse how
-  something works, compare approaches or prepare a plan for a Flutter or Dart
-  task. Do not use to implement changes or to score technical debt
-  (flutter-tech-debt-plan).
+  Use when asked to research, investigate, analyse how something works, compare
+  approaches or prepare a plan for a Flutter or Dart task. Runs a research-only
+  investigation before a task is planned: reads the codebase and authoritative
+  sources, records verified findings in one research note, weighs alternatives
+  and converges on a single recommended approach without editing code. Do not
+  use to implement changes or to score technical debt (flutter-tech-debt-plan).
 ---
 
 # Flutter Task Research

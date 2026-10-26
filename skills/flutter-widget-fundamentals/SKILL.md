@@ -1,16 +1,12 @@
 ---
 name: flutter-widget-fundamentals
 description: >
-  Applies core Flutter widget practice when writing or fixing widget code:
-  stateless versus stateful choice, const widgets, the State lifecycle and
-  disposing controllers, keys in reorderable lists, layout constraint errors,
-  updating state without mutating shared lists, forms and validation, basic
-  screen navigation, implicit animations, adaptive layout and reading error
-  messages. Use when building or reviewing a widget or screen, fixing a layout
-  or "unbounded height" error, a state that does not update or resets, a form,
-  or when a newcomer needs the basics explained. Do not use for app layers and
-  state management choice (flutter-architecture), theming (flutter-design-system),
-  API calls (flutter-django-integration) or profiling.
+  Use when building or reviewing a widget or screen, fixing a layout or
+  "unbounded height" error, a state that does not update or resets, a form, or
+  when a newcomer needs the basics explained. Applies core Flutter widget
+  practice when writing or fixing widget code. Do not use for app layers and
+  state management choice (flutter-architecture), theming (flutter-design-
+  system), API calls (flutter-django-integration) or profiling.
 ---
 
 # Flutter widget fundamentals
