@@ -21,6 +21,7 @@ Stance: this skill analyses and plans; it does not edit code. Frozen: the scorin
 - Every item cites evidence from the code. Mechanism: unevidenced debt cannot be prioritised or disputed.
 - Do not create duplicate issues. Mechanism: duplicates split discussion and inflate the backlog.
 - Order implementation steps so each can be verified, and name the test that proves the fix. Mechanism: debt fixes without tests risk new defects.
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 

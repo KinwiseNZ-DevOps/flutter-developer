@@ -26,6 +26,7 @@ Stance: separation of concerns is fixed; the specific packages and the amount of
 - Return `Result` rather than throwing across layers. Mechanism: Dart exceptions are unchecked, so a forgotten catch becomes a crash.
 - Subscribe to the smallest slice of state a widget needs, so a change rebuilds only what shows it. Mechanism: a broad subscription rebuilds the whole screen for one changed field; for measured rebuild problems hand off to the performance companion (flutter-perf-build-and-rebuild).
 - Generated models (`freezed`, `built_value`) trade build time for less hand-written code; say so when proposing them.
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 

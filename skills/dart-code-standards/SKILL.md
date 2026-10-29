@@ -25,6 +25,7 @@ Stance: the Effective Dart guidelines are the baseline. Frozen: casing rules, `d
 - Override `hashCode` whenever you override `==`, and avoid custom equality on mutable classes. Mechanism: mutating an object stored as a map key or set member breaks lookups.
 - Do not import another package's `src` directory. Mechanism: it is private and can change without notice.
 - Do not restyle code outside the task. Mechanism: unrelated edits hide the real change from reviewers.
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 

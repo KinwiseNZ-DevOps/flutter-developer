@@ -23,6 +23,7 @@ Stance: a Makefile is a small, readable index of project commands. Frozen: tabs 
 - Use `$(wildcard ...)`, not `$(shell ls ...)`. Mechanism: `wildcard` is built in and spawns no process.
 - Move long shell logic into a script file. Mechanism: Makefile quoting and expansion make complex recipes fragile.
 - Do not use recursive make unless nothing else works. Mechanism: each sub-make sees only its own directory, so dependencies across directories can be missed (the GNU Make manual covers recursive use in its own section).
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 

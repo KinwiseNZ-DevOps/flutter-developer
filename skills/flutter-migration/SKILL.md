@@ -21,6 +21,7 @@ Keep the app building and behaving the same while the Flutter or Dart version, o
 - Do not enable a build flag (such as `android.builtInKotlin=true`) before every plugin the app depends on supports it. Mechanism: one unmigrated plugin breaks the whole build, and the failure looks unrelated to the flag. Reason: flipping a global flag is all-or-nothing.
 - Do not assume a breaking-change title fully describes the fix. Mechanism: titles are summaries; the linked guide has the exact code and file changes. Reason: guessing from a title produces plausible but wrong edits.
 - State the Flutter and Dart versions involved in every migration change. Mechanism: the same symptom can have different fixes on different versions. Reason: an undated fix cannot be checked against the project later.
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 

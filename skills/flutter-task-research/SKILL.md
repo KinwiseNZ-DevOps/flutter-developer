@@ -21,6 +21,7 @@ Stance: this skill reads and records; it does not change source code or configur
 - Keep one living note and prune it. Mechanism: stale alternatives left in a note get implemented by mistake.
 - Keep chat updates short and point to the note rather than repeating it. Mechanism: duplicated text in two places drifts.
 - Separate fact from inference and say which is which.
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 

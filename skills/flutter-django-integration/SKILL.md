@@ -32,6 +32,7 @@ Stance: the backend's real behaviour is the contract, and the client must follow
 - Mark inference as inference. The reference separates official facts from advice.
 - Never open a bank or payment-provider page in an embedded `WebView`. Mechanism: banks block framed pages, and a `WebView` the app controls defeats the point of the customer authenticating directly with their bank rather than through the app; use the platform's in-app browser (Custom Tabs / `SFSafariViewController`) instead.
 - Never treat a payment return link as proof of an outcome; re-fetch status from the backend on both the link and on app resume. Mechanism: the link can be forged (any app can claim the same custom scheme), can carry a stale or unrelated `cid`, and frequently never arrives at all if the customer backgrounds or kills the app mid-flow.
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 

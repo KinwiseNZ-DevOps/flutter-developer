@@ -19,6 +19,7 @@ Stance: the Flutter framework rules and the project's own widgets, state tool an
 - Never create a controller inside `build`. Mechanism: `build` runs often, so each run leaks a new controller and loses the typed text.
 - Never use an index as a key for items that can move. Mechanism: the index stays put while the item moves, so the state sticks to the wrong item.
 - Never silence a constraint error with a guessed size. Mechanism: it hides the unbounded parent and breaks on another screen size.
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 

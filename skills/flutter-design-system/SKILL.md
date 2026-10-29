@@ -36,6 +36,7 @@ Stance: design values live in the theme, once. Frozen: no literal colours, font 
 - Give empty, loading and error states a design, and check the screen at 360 and 900 px wide, in light and dark, and at 200 percent text. Mechanism: most of the states a screen is in are not the happy path.
 - Do not use fixed heights on text containers. Mechanism: large text settings overflow them.
 - Do not turn off Material 3 in new code. Mechanism: it is the framework default from Flutter 3.16 onward (verify against the Flutter version in use), so opting out leaves a one-off look to maintain.
+- Act only on what the user asked. Before answering or changing anything, open the relevant files and check what is already done; report only what you checked, never guess, and do not redo finished work. Reason: guesses and repeated work waste the user's credit.
 
 ## Gate
 
