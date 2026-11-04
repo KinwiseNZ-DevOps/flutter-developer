@@ -72,6 +72,18 @@ Depth lives in the specialist skills above; this skill holds only routing and th
 
 Start with the row of the routing table that matches the task.
 
+## Works with other repos
+
+Flutter work depends on back-end work and on the brand.
+
+| Repo or skill | Relationship | Hand off when |
+|---|---|---|
+| kinwise-marketing | This repo depends on it | In-app copy, store text, tone, claims and brand rules. Take the words from there; do not invent them. |
+
+If a companion plugin is not installed, say the hand-off was skipped. Never edit another repo's code or rules from here.
+
+The full map is in `skills-repos-dependency-map.md` beside the repos.
+
 ## Always-on mode
 
 A start-up hook adds [always-on-rules.md](references/always-on-rules.md) to Claude Code sessions in matching projects. It is the single source of those rules, so edit it, not a copy. Say "stop flutter mode" to pause it. The README covers the saved mode and the safety checks.
