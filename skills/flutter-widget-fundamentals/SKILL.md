@@ -2,9 +2,10 @@
 name: flutter-widget-fundamentals
 description: >
   Use when building or reviewing a widget or screen, fixing a layout or
-  "unbounded height" error, a state that does not update or resets, a form, or
-  when a newcomer needs the basics explained. Applies core Flutter widget
-  practice when writing or fixing widget code. Do not use for app layers and
+  "unbounded height" error, a state that does not update or resets, a form, a
+  tap, swipe or other gesture, or when a newcomer needs the basics explained.
+  Applies core Flutter widget practice when writing or fixing widget code. Do
+  not use for app layers and
   state management choice (flutter-architecture), theming (flutter-design-
   system), API calls (flutter-django-integration) or profiling.
 ---

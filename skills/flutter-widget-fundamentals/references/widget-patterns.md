@@ -2,7 +2,7 @@
 
 Distilled from the basics of the official Flutter documentation and a beginner course's slides. Each rule has its reason. Check the project's Flutter version before relying on a newer API.
 
-Contents: stateless or stateful, const, State lifecycle, changing state, passing state, keys, layout and constraints, forms, navigation, dialogs, animations, adaptive layouts, reading errors.
+Contents: stateless or stateful, const, State lifecycle, changing state, passing state, keys, layout and constraints, gestures, forms, navigation, dialogs, animations, adaptive layouts, reading errors.
 
 ## Stateless or stateful
 
@@ -71,6 +71,13 @@ class _SearchBoxState extends State<SearchBox> {
 - `Expanded` and `Flexible` work only directly inside `Row`, `Column` or `Flex`.
 - `Stack` layers widgets on top of each other; use `Positioned` for placement inside it.
 - Prefer `Padding`, `SizedBox` spacing and `LayoutBuilder` or `MediaQuery.sizeOf(context)` to hard-coded sizes. Reason: screen sizes, text scale and platforms vary.
+
+## Gestures
+
+- Built-in widgets already handle the common case: every button variant exposes `onPressed`; `Dismissible` handles a swipe that removes the wrapped widget, with a different `background` colour per swipe direction.
+- For anything else, wrap the widget in `GestureDetector`. Decide the gesture-to-behaviour mapping before writing code, then wire each one: tap/double-tap to `onTap`/`onDoubleTap`, long press to `onLongPress`, horizontal swipe to `onHorizontalDragStart`/`Update`/`End`, vertical swipe to the vertical equivalents, diagonal to `onPanStart`/`Update`/`End`, pinch to `onScaleStart`/`Update`/`End` (`scale` in the update event is above 1.0 for a spread-out gesture, below 1.0 for a pinch-in).
+- A drag start event gives a position but not a direction. To detect left versus right, record the starting X position in `onHorizontalDragStart`, compare it to the current X on each `onHorizontalDragUpdate` to track which way the finger is moving, then act on that in `onHorizontalDragEnd`.
+- `GestureDetector` is non-visual: it only wraps or nests another widget, with no bloat besides `child` and the event callbacks. Gesture callbacks run outside the build cycle, so marking one `async` and `await`-ing inside it is safe.
 
 ## Forms
 

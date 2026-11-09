@@ -4,6 +4,17 @@ All notable changes to this plugin are listed here, newest first. To cut a relea
 
 ## [Unreleased]
 
+## [0.11.0] - 2026-11-10
+
+- Strengthened three skills with sourced detail from *Flutter Design Patterns and Best Practices* (Orlova,
+  Kadah, Blasco, Packt, 2024) and *Flutter App Development* (Payne, Apress, 2024): dart-code-standards now
+  states that a Future starts running at creation, not at await, and the pattern of starting independent
+  Futures before awaiting any of them; flutter-architecture documents get_it as a sourced alternative to
+  context.read()/provider for dependency injection, with a decision rule for each; flutter-widget-fundamentals
+  gains a Gestures section (GestureDetector wiring, swipe-direction detection) it did not have before. The full
+  annotated bibliography is in reference-content/sources/flutter-architecture-and-patterns.md (private, not
+  published).
+
 ## [0.10.0] - 2026-11-05
 
 - Added a Works with other repos section to the router skill and README: it names the repos this one depends on or is relied on by, and when to hand off. Marketing comes first in the decision order (marketing, then look and feel, then the technical work). The map is in skills-repos-dependency-map.md beside the repos.

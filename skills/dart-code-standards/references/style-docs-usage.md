@@ -87,7 +87,10 @@ Condensed from Effective Dart (https://dart.dev/effective-dart). Trust level: of
 - Avoid using `Completer` directly; it is rarely needed and easy to leave incomplete.
 - Prefer higher-order methods when transforming a stream.
 - When disambiguating a `FutureOr<T>` whose `T` could be `Object`, test for `Future<T>`, not for `T`.
+- A `Future` is evaluated eagerly: the function body starts running at the moment it is called, not when a caller `await`s it or adds a `.then()`. Reason: Dart's event loop runs one event at a time; the call posts the work immediately, and `await` only pauses the calling function until that already-running work resolves (Dart language tour, event loop). Do not assume an unawaited call has not started.
+- Marking a function `async` does nothing by itself for blocking; only an `await` inside it yields control back to the event loop between steps. A long synchronous loop inside an `async` function still blocks exactly as it would outside one.
+- When two or more `Future`-returning calls do not depend on each other's results, start them all before awaiting any of them (assign to variables without `await`, then await each when its value is needed, or together with `Future.wait([...])`), rather than awaiting each in turn. Reason: a `Future` starts running at creation, so sequential `await`s needlessly serialise work the event loop could run concurrently. Only safe when the calls do not mutate shared mutable state.
 
-Verified against the live guide on 2026-10-18.
+Verified against the live guide on 2026-10-18. The eager-evaluation and independent-Futures points above are general Dart language facts (dart.dev/language/concurrency), not Effective Dart style rules, kept here because they are usage mistakes in the same spirit as the rest of this section.
 
-Official source: https://dart.dev/effective-dart/style, /documentation, /usage
+Official source: https://dart.dev/effective-dart/style, /documentation, /usage, /language/concurrency
