@@ -4,6 +4,10 @@ All notable changes to this plugin are listed here, newest first. To cut a relea
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-11-11
+
+- Finished reading *Flutter App Development* (Payne, Apress, 2024) and added the rest of what it taught: Riverpod as a sourced state-sharing option in flutter-architecture, form rules (`FormField` wrapping, `inputFormatters`), layout and overflow rules, a two-style navigation limit and the debug-paint legend in flutter-widget-fundamentals, and a caution in flutter-django-integration that `shared_preferences` is not for tokens.
+
 ## [0.11.0] - 2026-11-10
 
 - Strengthened three skills with sourced detail from *Flutter Design Patterns and Best Practices* (Orlova,

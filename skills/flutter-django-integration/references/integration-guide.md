@@ -68,6 +68,7 @@ Official facts:
 - DRF's built-in token authentication uses the keyword `Token`, not `Bearer`, unless subclassed. Check which scheme the backend uses before writing the header.
 - Token authentication should be served over HTTPS only.
 - Flutter's authenticated-requests recipe sets the header with `headers: {HttpHeaders.authorizationHeader: ...}` and gives no storage guidance. Do not hard-code tokens as string literals in client code.
+- `shared_preferences` is plain, unencrypted storage for settings such as dark mode. One reference book lists tokens among its uses; do not follow that, keep tokens in `flutter_secure_storage`.
 - `flutter_secure_storage` stores values in the iOS and macOS Keychain, with Android using Keystore-backed ciphers. Android Auto Backup can cause key-unwrap errors, so disable backup (`android:allowBackup="false"`) or exclude the package's preferences. The web implementation is experimental and needs HTTPS and HSTS. Call `WidgetsFlutterBinding.ensureInitialized()` before use.
 
 Inference (verify against the backend):
